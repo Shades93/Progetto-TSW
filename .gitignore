@@ -1,0 +1,17 @@
+.metadata/
+.recommenders/
+tmp/
+*.tmp/
+*.bak/
+*.swp/
+*~.nib/
+local.properties
+
+*.class
+bin/
+build/
+target/
+
+*.log
+.settings/org.eclipse.jdt.core.prefs
+EOF
