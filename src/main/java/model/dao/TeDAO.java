@@ -12,7 +12,7 @@ public class TeDAO {
     }
 
     // Catalogo pubblico: recupera solo i prodotti attivi
-    public List<TeBean> doRetrieveAllActive() throws SQLException {
+    public List<TeBean> doRetrieveAll() throws SQLException {
         String sql = "SELECT * FROM te WHERE attivo = TRUE";
         List<TeBean> list = new ArrayList<>();
 

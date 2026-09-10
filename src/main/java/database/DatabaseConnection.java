@@ -1,4 +1,4 @@
-package util;
+package database;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -14,7 +14,7 @@ public class DatabaseConnection {
         try {
             InitialContext initContext = new InitialContext();
             // Cerca il pool configurato in Tomcat
-            ds = (DataSource) initContext.lookup("java:/comp/env/jdbc/EcommerceDB");
+            ds = (DataSource) initContext.lookup("java:/comp/env/jdbc/DB");
         } catch (NamingException e) {
             throw new RuntimeException("Impossibile trovare il DataSource", e);
         }

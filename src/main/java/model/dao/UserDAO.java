@@ -26,8 +26,30 @@ public class UserDAO {
         }
         return null;
     }
+    public UserBean doRetrieveByEmail(String email) throws SQLException {
+        String sql = "SELECT * FROM utente WHERE email = ?";
+        try (Connection con = database.DatabaseConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            
+            ps.setString(1, email);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    UserBean u = new UserBean();
+                    u.setUserId(rs.getInt("user_id"));
+                    u.setNome(rs.getString("nome"));
+                    u.setCognome(rs.getString("cognome"));
+                    u.setEmail(rs.getString("email"));
+                    u.setPassword(rs.getString("password"));
+                    u.setTelefono(rs.getString("telefono"));
+                    u.setAdmin(rs.getBoolean("is_admin"));
+                    return u;
+                }
+            }
+        }
+        return null;
+    }
 
-    // Requisito Checklist: Verifica asincrona dell'email durante la registrazione
+    // Verifica asincrona dell'email durante la registrazione
     public boolean checkEmailExists(String email) throws SQLException {
         String sql = "SELECT user_id FROM utente WHERE email = ?";
         try (Connection con = getConnection();
@@ -39,7 +61,11 @@ public class UserDAO {
             }
         }
     }
-
+    
+    
+    
+    
+    
     // Registrazione nuovo utente
     public void doSave(UserBean user) throws SQLException {
         String sql = "INSERT INTO utente (nome, cognome, email, password, telefono, is_admin) VALUES (?, ?, ?, ?, ?, ?)";

@@ -132,7 +132,66 @@ public class OrdineDAO {
         return ordine;
     }
 
-    // Requisito Checklist: Visualizzazione ordini admin con filtri per data e cliente
+        public OrdineBean doRetrieveByKeyAndUser(int idOrdine, int userId) throws SQLException {
+        String sql = "SELECT * FROM ordine WHERE id_ordine = ? AND user_id = ?";
+        OrdineBean ordine = null;
+
+        try (Connection con = database.DatabaseConnection.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setInt(1, idOrdine);
+            ps.setInt(2, userId);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    ordine = new OrdineBean();
+                    ordine.setIdOrdine(rs.getInt("id_ordine"));
+                    ordine.setUserId(rs.getInt("user_id"));
+                    ordine.setData(rs.getTimestamp("data_ordine"));
+                    ordine.setTotale(rs.getDouble("totale"));
+                    ordine.setTotaleIva(rs.getDouble("totale_iva"));
+                    ordine.setStato(rs.getString("stato"));
+                    ordine.setIndirizzoSpedizione(rs.getString("indirizzo_spedizione"));
+                    ordine.setMetodoPagamento(rs.getString("metodo_pagamento"));
+
+                    // Carica anche i dettagli (le righe prodotto) dell'ordine
+                    ordine.setDettagli(doRetrieveDettagli(idOrdine));
+                }
+            }
+        }
+        return ordine;
+    }
+
+    // Metodo di supporto per caricare le righe della fattura con prezzo storico
+    private List<DettaglioOrdineBean> doRetrieveDettagli(int idOrdine) throws SQLException {
+        String sql = "SELECT d.*, t.nome_te FROM dettaglio_ordine d "
+                + "JOIN te t ON d.id_te = t.id_te WHERE d.id_ordine = ?";
+        List<DettaglioOrdineBean> list = new ArrayList<>();
+
+        try (Connection con = database.DatabaseConnection.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setInt(1, idOrdine);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    DettaglioOrdineBean item = new DettaglioOrdineBean();
+                    item.setIdOrdine(rs.getInt("id_ordine"));
+                    item.setIdTe(rs.getInt("id_te"));
+                    item.setNomeTe(rs.getString("nome_te"));
+                    item.setQuantita(rs.getInt("quantita"));
+                    item.setPrezzoStorico(rs.getDouble("prezzo_storico"));
+                    item.setIvaStorica(rs.getDouble("iva_storica"));
+                    list.add(item);
+                }
+            }
+        }
+        return list;
+    }
+
+
+
+
+    // Visualizzazione ordini admin con filtri per data e cliente
     public List<OrdineBean> doRetrieveByFilters(Integer userId, String dataInizio, String dataFine) throws SQLException {
         StringBuilder sql = new StringBuilder("SELECT * FROM ordine WHERE 1=1 ");
         List<Object> params = new ArrayList<>();
