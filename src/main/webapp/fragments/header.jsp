@@ -3,15 +3,18 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <!-- Requisito checklist: Responsive design -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tea Time E-Commerce</title>
+    <title>Tèrapia E-Commerce</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <!--Codice per css specifici per ogni pagina-->
+    <c:if test="${not empty param.pageCss}">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/${param.pageCss}.css">
+    </c:if>
 </head>
 <body>
 <header class="main-header">
     <div class="logo">
-        <a href="${pageContext.request.contextPath}/catalogo"><h1>Tea Time Shop</h1></a>
+        <a href="${pageContext.request.contextPath}/catalogo"><h1>Tèrapia</h1></a>
     </div>
 
     <!-- Barra di ricerca con AJAX e suggerimenti dinamici -->

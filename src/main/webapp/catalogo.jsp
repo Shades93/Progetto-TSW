@@ -1,8 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<jsp:include page="/fragments/header.jsp" />
-<jsp:include page="/fragments/nav.jsp" />
+<jsp:include page="/fragments/header.jsp">
+    <jsp:param name="title" value="I Nostri Tè - Catalogo" />
+    <jsp:param name="pageCss" value="catalogo" />
+</jsp:include>
+
+<jsp:include page="/fragments/nav.jsp">
+    <jsp:param name="page" value="catalogo" />
+</jsp:include>
 
 <main class="container">
     <h2>I Nostri Prodotti</h2>
@@ -15,7 +21,7 @@
         <a href="${pageContext.request.contextPath}/catalogo">Tutti</a>
         <a href="${pageContext.request.contextPath}/catalogo?categoriaId=1">Tè Verde</a>
         <a href="${pageContext.request.contextPath}/catalogo?categoriaId=2">Tè Nero</a>
-        <a href="${pageContext.request.contextPath}/catalogo?categoriaId=3">Tisane</a>
+        <a href="${pageContext.request.contextPath}/catalogo?categoriaId=3">Matcha</a>
     </div>
 
     <div class="product-grid">

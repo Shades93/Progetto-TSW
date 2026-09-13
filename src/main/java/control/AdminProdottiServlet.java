@@ -8,8 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.TeBean;
+import model.UserBean;
 import model.dao.TeDAO;
 
 @WebServlet("/admin/prodotti")
@@ -22,14 +24,31 @@ public class AdminProdottiServlet extends HttpServlet {
         teDAO = new TeDAO();
     }
 
+    // Verifica dei permessi da amministratore
+    private boolean checkAdmin(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession(false);
+        UserBean user = (session != null) ? (UserBean) session.getAttribute("user") : null;
+
+        if (user == null || !user.isAdmin()) {
+            response.sendError(HttpServletResponse.SC_FORBIDDEN, "Accesso non autorizzato.");
+            return false;
+        }
+        return true;
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        // 1. Controllo sicurezza
+        if (!checkAdmin(request, response)) {
+            return;
+        }
+
         String action = request.getParameter("action");
         try {
             if ("delete".equals(action)) {
                 int id = Integer.parseInt(request.getParameter("id"));
-                // Cancellazione sicura (disattivazione logica da checklist)
                 teDAO.doDelete(id);
                 response.sendRedirect(request.getContextPath() + "/admin/prodotti?msg=deleted");
                 return;
@@ -45,6 +64,7 @@ public class AdminProdottiServlet extends HttpServlet {
             List<TeBean> prodotti = teDAO.doRetrieveAll();
             request.setAttribute("prodotti", prodotti);
             request.getRequestDispatcher("/admin/prodotti.jsp").forward(request, response);
+
         } catch (SQLException | NumberFormatException e) {
             e.printStackTrace();
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
@@ -54,15 +74,31 @@ public class AdminProdottiServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        // 1. Controllo sicurezza
+        if (!checkAdmin(request, response)) {
+            return;
+        }
+
         String action = request.getParameter("action");
         try {
             TeBean p = new TeBean();
-            p.setNomeTe(request.getParameter("nome"));
+
+            // Accetta sia "nome" sia "nomeTe" per evitare errori tra form e servlet
+            String nome = request.getParameter("nomeTe");
+            if (nome == null) nome = request.getParameter("nome");
+            p.setNomeTe(nome);
+
             p.setDescrizione(request.getParameter("descrizione"));
             p.setPrezzo(Double.parseDouble(request.getParameter("prezzo")));
             p.setIva(Double.parseDouble(request.getParameter("iva")));
             p.setQuantitaDisponibile(Integer.parseInt(request.getParameter("quantitaDisponibile")));
-            p.setIdCategoria(Integer.parseInt(request.getParameter("categoria")));
+
+            // Corretto: legge "idCategoria" dal form <select name="idCategoria">
+            String catParam = request.getParameter("idCategoria");
+            if (catParam == null) catParam = request.getParameter("categoria");
+            p.setIdCategoria(Integer.parseInt(catParam));
+
             p.setImmagine(request.getParameter("immagine"));
             p.setAttivo(true);
 
@@ -74,7 +110,11 @@ public class AdminProdottiServlet extends HttpServlet {
             p.setProvenienza(request.getParameter("provenienza"));
 
             if ("update".equals(action)) {
-                p.setIdTe(Integer.parseInt(request.getParameter("id")));
+                // Legge l'ID del prodotto da aggiornare
+                String idParam = request.getParameter("id");
+                if (idParam == null) idParam = request.getParameter("idTe");
+                p.setIdTe(Integer.parseInt(idParam));
+
                 teDAO.doUpdate(p);
                 response.sendRedirect(request.getContextPath() + "/admin/prodotti?msg=updated");
             } else {

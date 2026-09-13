@@ -79,7 +79,7 @@ public class CarrelloServlet extends HttpServlet {
             request.setAttribute("errorMessage", "Errore durante l'elaborazione del carrello.");
         }
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/cart.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/carrello.jsp");
         dispatcher.forward(request, response);
     }
 

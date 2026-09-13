@@ -38,7 +38,7 @@ public class CatalogoServlet extends HttpServlet {
                     return;
                 }
                 request.setAttribute("prodotto", p);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/dettaglioProdotto.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/dettaglioProdotto.jsp");
                 dispatcher.forward(request, response);
             } else {
                 // Catalogo generale o filtrato per categoria

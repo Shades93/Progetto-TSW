@@ -25,7 +25,7 @@ public class OrdiniClienteServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(false);
         UserBean user = (session != null) ? (UserBean) session.getAttribute("user") : null;
@@ -38,13 +38,21 @@ public class OrdiniClienteServlet extends HttpServlet {
         String idStr = request.getParameter("id");
         try {
             if (idStr != null) {
-                // Dettaglio singolo ordine (Fattura)
                 int idOrdine = Integer.parseInt(idStr);
-                OrdineBean ordine = ordineDAO.doRetrieveByKeyAndUser(idOrdine, user.getUserId());
+                OrdineBean ordine;
+
+                // Logica autorizzativa: l'admin vede tutto, l'utente solo il suo
+                if (user.isAdmin()) {
+                    ordine = ordineDAO.doRetrieveByKey(idOrdine);
+                } else {
+                    ordine = ordineDAO.doRetrieveByKeyAndUser(idOrdine, user.getUserId());
+                }
+
                 if (ordine == null) {
-                    response.sendError(HttpServletResponse.SC_FORBIDDEN);
+                    response.sendError(HttpServletResponse.SC_NOT_FOUND, "Ordine non trovato.");
                     return;
                 }
+
                 request.setAttribute("ordine", ordine);
                 request.getRequestDispatcher("/dettaglioOrdine.jsp").forward(request, response);
             } else {

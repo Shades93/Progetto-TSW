@@ -70,6 +70,7 @@ public class CheckoutServlet extends HttpServlet {
                 det.setQuantita(item.getQuantita());
                 det.setPrezzoStorico(item.getProdotto().getPrezzo());
                 det.setIvaStorica(item.getProdotto().getIva());
+                det.setNomeTe(item.getProdotto().getNomeTe());
                 ordine.getDettagli().add(det);
             }
 
