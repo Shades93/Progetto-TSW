@@ -20,6 +20,12 @@ import model.dao.OrdineDAO;
 public class CheckoutServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private OrdineDAO ordineDAO;
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
+        response.sendRedirect(request.getContextPath() + "/carrello");
+    }
 
     @Override
     public void init() {

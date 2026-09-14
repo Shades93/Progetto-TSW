@@ -95,7 +95,7 @@ public class OrdineDAO {
     }
 
     // Dettaglio singolo ordine con righe storiche (per la fattura)
-    public OrdineBean doRetrieveByKeyWithDetails(int idOrdine) throws SQLException {
+    public OrdineBean doRetrieveByKey(int idOrdine) throws SQLException {
         String sqlOrd = "SELECT * FROM ordine WHERE id_ordine = ?";
         String sqlDet = "SELECT d.*, t.nome_te FROM dettaglio_ordine d "
                       + "JOIN te t ON d.id_te = t.id_te WHERE d.id_ordine = ?";

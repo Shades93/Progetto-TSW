@@ -1,0 +1,354 @@
+:root {
+    --bg-page: #fdfae9;
+    --nav-bg: #4a6e24;
+    --text-active: #4a6e24;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-size: 1.25rem;
+    background-color: var(--bg-page);
+    display: grid;
+    grid-template-columns: 16rem 1fr;
+    grid-template-rows: auto 1fr auto;
+}
+
+.main-header {
+    grid-column: 1;
+    grid-row: 1;
+    background-color: var(--nav-bg);
+    padding: 1rem 0 1.5rem 1rem; /* Margini verticali speculari per centrare il blocco */
+    display: flex;
+    align-items: stretch;
+}
+
+/* 2. Logo card chiara */
+.main-header .logo {
+    background-color: var(--bg-page);
+    border-radius: 2.5rem 0 2.5rem 0; /* Curva alto-sx e basso-dx */
+    margin: 0;
+    padding: 1.2rem 1rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.main-header .logo h1 {
+    margin: 0;
+    line-height: 1;
+}
+
+
+.main-header .logo h1 a {
+    color: var(--nav-bg);
+    text-decoration: none;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    display: block;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.main-header .logo:hover h1 a {
+    transform: scale(1.03);
+    color: #2b4213;
+}
+
+.main-header .logo .site-logo {
+    display: block;
+    max-width: 100%;
+    width: 90px;
+    height: auto;
+    margin: 0.5rem auto 0 auto;
+}
+
+
+.main-header .search-container input {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 0.95rem;
+}
+
+
+.main-nav {
+    grid-column: 1;
+    grid-row: 2;
+    background-color: var(--nav-bg);
+    font-family: "Cormorant Garamond", serif;
+    font-style: normal;
+    min-height: 100vh;
+    position: sticky;
+    top: 0;
+}
+
+.nav-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 0.8rem;
+    padding-block: 2rem;
+    margin-inline-start: 2rem;
+}
+
+.nav-list li {
+    padding: 1rem 2.5rem;
+    border-radius: 100vw 0 0 100vw;
+    display: block;
+}
+
+.nav-list a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+
+.nav-list li.active {
+    background: var(--bg-page);
+    position: relative;
+    border-radius: 2rem 0 0 0;
+    display: block;
+}
+
+.nav-list li.active a {
+    color: var(--text-active);
+}
+
+
+.nav-list li.active::before,
+.nav-list li.active::after {
+    --curve-size: 1.5rem;
+    content: '';
+    position: absolute;
+    width: var(--curve-size);
+    height: var(--curve-size);
+    right: 0;
+    background: var(--nav-bg);
+    pointer-events: none;
+}
+
+.nav-list li.active::before {
+    top: calc(var(--curve-size) * -1);
+    border-radius: 0 0 100vw 0;
+    box-shadow: 6px 6px 0 6px var(--bg-page);
+}
+
+.nav-list li.active::after {
+    bottom: calc(var(--curve-size) * -1);
+    border-radius: 0 100vw 0 0;
+    box-shadow: 6px -6px 0 6px var(--bg-page);
+}
+
+
+.nav-list li.nav-cart a svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+    flex-shrink: 0;
+}
+
+
+.nav-list li:not(.active) a:hover {
+    color: #fdfae9;
+    transform: translateX(6px);
+    opacity: 0.85;
+}
+
+.nav-list a {
+    transition: transform 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+}
+
+
+main.container,
+.main-content {
+    grid-column: 2;
+    grid-row: 2;
+    background-color: var(--bg-page);
+    padding: 2.5rem 3.5rem;
+}
+
+.top-bar {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    background-color: var(--nav-bg);
+    background-image: url('../immagini/pattern.jpg');
+    background-repeat: repeat;  
+    
+    
+    margin: 1rem 1.5rem 1.5rem 1.5rem; 
+    align-self: stretch;
+    box-sizing: border-box;
+    
+    
+    border-radius: 1.25rem; 
+    border: 2px solid rgba(253, 250, 233, 0.6);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    position: relative;
+    z-index: 1;
+}
+
+
+.categorie-filtri {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background-color: rgba(253, 250, 233, 0.9);
+    backdrop-filter: blur(4px);
+    padding: 0.35rem 1rem;
+    border-radius: 50px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.categorie-filtri a {
+    color: var(--nav-bg);
+    text-decoration: none;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 0.3rem 0.6rem;
+    border-radius: 20px;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.categorie-filtri a:hover {
+    color: #1a3828;
+    background-color: rgba(74, 110, 36, 0.12);
+}
+
+.categorie-filtri a.active {
+    background-color: var(--nav-bg);
+    color: #ffffff;
+}
+.top-bar .search-bar {
+    position: relative;
+}
+
+.top-bar .search-bar input {
+    width: 220px;
+    padding: 0.45rem 1rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: #ffffff;
+    font-size: 0.95rem;
+    outline: none;
+    transition: width 0.2s ease, border-color 0.2s ease;
+}
+
+.top-bar .search-bar input:focus {
+    width: 260px;
+}
+
+/* Costringe la ricerca e il carrello a stare uno accanto all'altro */
+.top-bar-actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+}
+
+/* Pulsante carrello */
+.top-cart-btn {
+    position: relative;
+    display: inline-flex;
+    margin-top: 1rem;
+    transform: translateY(12px);
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: var(--bg-page);
+    border-radius: 50%;
+    color: var(--nav-bg);
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+    flex-shrink: 0;
+}
+
+.top-cart-btn svg {
+    fill: var(--nav-bg);
+}
+
+/* Badge rosso posizionato in alto a destra sull'icona */
+.cart-badge {
+    position: absolute;
+    top: -4px;
+    right: -6px;
+    background-color: #c94a29;
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: bold;
+    font-family: sans-serif;
+    min-width: 18px;
+    height: 20px;
+    line-height: 18px;
+    border-radius: 50%;
+    text-align: center;
+    border: 2px solid var(--bg-page);
+}
+
+
+#searchSuggestions {
+    display: none;
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    width: 100%;
+    min-width: 240px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    max-height: 250px;
+    overflow-y: auto;
+    z-index: 9999;
+}
+
+.suggestion-item {
+    padding: 0.6rem 1rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+    color: #2b3a1a;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+
+.suggestion-item:hover {
+    background-color: #f1f6eb;
+    font-weight: 600;
+}
+
+
+footer {
+    grid-column: 2;
+    grid-row: 3;
+    padding: 2rem 1rem;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #555;
+    background-color: var(--bg-page);
+}

@@ -3,15 +3,15 @@
 
 <nav class="main-nav">
     <ul class="nav-list">
+    	<li class="${param.page == 'home' ? 'active' : ''}">
+            <a href="${pageContext.request.contextPath}/index.jsp" ${param.page == 'home' ? 'aria-current="page"' : ''}>
+                Home
+            </a>
+        </li>
+        <!-- Voci di navigazione a sinistra -->
         <li class="${param.page == 'catalogo' ? 'active' : ''}">
             <a href="${pageContext.request.contextPath}/catalogo" ${param.page == 'catalogo' ? 'aria-current="page"' : ''}>
                 Catalogo
-            </a>
-        </li>
-
-        <li class="${param.page == 'carrello' ? 'active' : ''}">
-            <a href="${pageContext.request.contextPath}/carrello" ${param.page == 'carrello' ? 'aria-current="page"' : ''}>
-                Carrello (${sessionScope.carrello != null ? sessionScope.carrello.count : 0})
             </a>
         </li>
 
@@ -32,12 +32,12 @@
                     </li>
                 </c:if>
 
-                <li><span class="user-greeting">Ciao, ${sessionScope.user.nome}</span></li>
+                <li class="nav-user"><span class="user-greeting">Ciao, ${sessionScope.user.nome}</span></li>
                 <li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
             </c:when>
 
             <c:otherwise>
-                <li class="${param.page == 'login' ? 'active' : ''}">
+                <li class="nav-auth ${param.page == 'login' ? 'active' : ''}">
                     <a href="${pageContext.request.contextPath}/login.jsp" ${param.page == 'login' ? 'aria-current="page"' : ''}>
                         Accedi
                     </a>

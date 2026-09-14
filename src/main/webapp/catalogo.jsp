@@ -10,19 +10,14 @@
     <jsp:param name="page" value="catalogo" />
 </jsp:include>
 
+<jsp:include page="/fragments/barra.jsp" />
+
 <main class="container">
     <h2>I Nostri Prodotti</h2>
 
     <c:if test="${not empty param.msg}">
         <div class="alert alert-success">Operazione completata con successo!</div>
     </c:if>
-
-    <div class="categorie-filtri">
-        <a href="${pageContext.request.contextPath}/catalogo">Tutti</a>
-        <a href="${pageContext.request.contextPath}/catalogo?categoriaId=1">Tè Verde</a>
-        <a href="${pageContext.request.contextPath}/catalogo?categoriaId=2">Tè Nero</a>
-        <a href="${pageContext.request.contextPath}/catalogo?categoriaId=3">Matcha</a>
-    </div>
 
     <div class="product-grid">
         <c:forEach var="p" items="${prodotti}">

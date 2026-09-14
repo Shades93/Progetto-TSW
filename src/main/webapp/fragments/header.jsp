@@ -1,10 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tèrapia E-Commerce</title>
+    <title>Tèrapia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <!--Codice per css specifici per ogni pagina-->
     <c:if test="${not empty param.pageCss}">
@@ -12,14 +17,13 @@
     </c:if>
 </head>
 <body>
-<header class="main-header">
-    <div class="logo">
-        <a href="${pageContext.request.contextPath}/catalogo"><h1>Tèrapia</h1></a>
-    </div>
+	<header class="main-header">
+	    <div class="logo">
+	    	<h1>
+	    		<a href="${pageContext.request.contextPath}/index.jsp">Tèrapia</a>
+	    		<img src="${pageContext.request.contextPath}/immagini/logo.png" alt="Logo" class="site-logo">
+	    	</h1> 
+	    </div>
+	</header>
 
-    <!-- Barra di ricerca con AJAX e suggerimenti dinamici -->
-    <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Cerca un tè..." autocomplete="off">
-        <div id="searchSuggestions" class="suggestions-box"></div>
-    </div>
-</header>
+
