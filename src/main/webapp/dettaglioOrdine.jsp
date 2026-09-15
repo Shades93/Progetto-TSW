@@ -14,15 +14,15 @@
 <main class="container">
     <div class="no-print actions-bar">
         <a href="${pageContext.request.contextPath}/ordini" class="link-back">&larr; Torna allo storico</a>
-        <button onclick="window.print()" class="btn-primary">Stampa Fattura / Salva in PDF</button>
+        <button onclick="window.print()" class="btn-primary">Stampa fattura</button>
     </div>
 
     <!-- Scheda Fattura Formattata -->
     <div class="invoice-card">
         <div class="invoice-header">
             <div>
-                <h2>FATTURA DI VENDITA</h2>
-                <p>Numero Documento: <strong>#${not empty ordine.idOrdine ? ordine.idOrdine : ordine.id}</strong></p>
+                <h2>Invoice</h2>
+                <p>Numero Ordine: <strong>#${not empty ordine.idOrdine ? ordine.idOrdine : ordine.id}</strong></p>
                 <p>Data Emissione: <strong><fmt:formatDate value="${ordine.dataOrdine}" pattern="dd/MM/yyyy"/></strong></p>
             </div>
             <div class="invoice-seller">
@@ -35,13 +35,12 @@
 
         <hr class="divider">
 
-        <div class="invoice-customer">
-            <h4>Intestato a:</h4>
-            <c:set var="cliente" value="${not empty ordine.utente ? ordine.utente : sessionScope.user}" />
-            <p><strong>${cliente.nome} ${cliente.cognome}</strong></p>
-            <p>Email: ${cliente.email}</p>
-            <p>Indirizzo di Spedizione: ${cliente.indirizzo}</p>
-        </div>
+		<div class="invoice-customer">
+		    <h4>Intestato a:</h4>
+		    <p><strong>${sessionScope.user.nome} ${sessionScope.user.cognome}</strong></p>
+		    <p>Email: ${sessionScope.user.email}</p>
+		    <p>Indirizzo di Spedizione: ${ordine.indirizzoSpedizione}</p>
+		</div>
 
         <table class="invoice-table">
             <thead>

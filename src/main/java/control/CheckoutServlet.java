@@ -35,6 +35,7 @@ public class CheckoutServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession(false);
         UserBean user = (session != null) ? (UserBean) session.getAttribute("user") : null;
         CarrelloBean carrello = (session != null) ? (CarrelloBean) session.getAttribute("carrello") : null;

@@ -99,4 +99,42 @@
 
 <script src="${pageContext.request.contextPath}/js/slider.js"></script>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('.form-add-detail');
+    if (!form) return;
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // getAttribute evita il conflitto con l'input name="action"
+        const baseUrl = this.getAttribute('action'); 
+        const formData = new FormData(this);
+        const params = new URLSearchParams(formData).toString();
+        const url = baseUrl + '?' + params;
+
+        fetch(url, { method: 'GET' })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Errore server: " + response.status);
+                }
+                return response.text();
+            })
+            .then(count => {
+                let badge = document.querySelector('.cart-badge');
+                if (!badge) {
+                    badge = document.createElement('span');
+                    badge.className = 'cart-badge';
+                    const cartBtn = document.querySelector('.top-cart-btn');
+                    if (cartBtn) cartBtn.appendChild(badge);
+                }
+                if (badge) {
+                    badge.textContent = count.trim();
+                }
+            })
+            .catch(err => console.error("Errore fetch carrello:", err));
+    });
+});
+</script>
+
 <jsp:include page="/fragments/footer.jsp" />

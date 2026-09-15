@@ -147,7 +147,7 @@ public class OrdineDAO {
                     ordine = new OrdineBean();
                     ordine.setIdOrdine(rs.getInt("id_ordine"));
                     ordine.setUserId(rs.getInt("user_id"));
-                    ordine.setData(rs.getTimestamp("data_ordine"));
+                    ordine.setData(rs.getTimestamp("data"));
                     ordine.setTotale(rs.getDouble("totale"));
                     ordine.setTotaleIva(rs.getDouble("totale_iva"));
                     ordine.setStato(rs.getString("stato"));

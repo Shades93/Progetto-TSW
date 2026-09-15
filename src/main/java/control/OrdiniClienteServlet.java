@@ -1,7 +1,6 @@
 package control;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -61,9 +60,11 @@ public class OrdiniClienteServlet extends HttpServlet {
                 request.setAttribute("ordini", ordini);
                 request.getRequestDispatcher("/storicoOrdini.jsp").forward(request, response);
             }
-        } catch (SQLException | NumberFormatException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            response.setContentType("text/plain;charset=UTF-8");
+            response.getWriter().write("ERRORE: " + e.getClass().getName() + " - " + e.getMessage());
+            return;
         }
     }
 }

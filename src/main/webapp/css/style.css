@@ -259,7 +259,7 @@ main.container,
     width: 260px;
 }
 
-/* Costringe la ricerca e il carrello a stare uno accanto all'altro */
+/* Barra e icona carrello attaccati*/
 .top-bar-actions {
     display: flex;
     flex-direction: row;
@@ -268,16 +268,15 @@ main.container,
     flex-shrink: 0;
 }
 
-/* Pulsante carrello */
 .top-cart-btn {
     position: relative;
     display: inline-flex;
-    margin-top: 1rem;
+    margin-top: 2rem;
     transform: translateY(12px);
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 39px;
+    height: 39px;
     background-color: var(--bg-page);
     border-radius: 50%;
     color: var(--nav-bg);
@@ -290,7 +289,7 @@ main.container,
     fill: var(--nav-bg);
 }
 
-/* Badge rosso posizionato in alto a destra sull'icona */
+
 .cart-badge {
     position: absolute;
     top: -4px;

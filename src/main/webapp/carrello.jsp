@@ -82,11 +82,26 @@
                             Totale: <strong class="total-price"><fmt:formatNumber value="${carrello.totale}" type="currency" currencySymbol="€"/></strong>
                         </p>
                         
-                        <form action="${pageContext.request.contextPath}/checkout" method="post">
-                            <button type="submit" class="btn-checkout">
-                                Procedi al Checkout &rarr;
-                            </button>
-                        </form>
+                        <form action="${pageContext.request.contextPath}/checkout" method="post" style="margin-top: 15px; display: flex; flex-direction: column; gap: 10px;">
+						    <div>
+						        <label for="indirizzo" style="display: block; font-weight: bold; margin-bottom: 4px;">Indirizzo di Spedizione:</label>
+						        <input type="text" id="indirizzo" name="indirizzo" required placeholder="Via, Civico, Città, CAP" style="width: 100%; padding: 8px; box-sizing: border-box;">
+						    </div>
+						    
+						    <div>
+						        <label for="metodoPagamento" style="display: block; font-weight: bold; margin-bottom: 4px;">Metodo di Pagamento:</label>
+						        <select id="metodoPagamento" name="metodoPagamento" required style="width: 100%; padding: 8px; box-sizing: border-box;">
+						            <option value="Carta di Credito (Visa)">Carta di Credito (Visa)</option>
+						            <option value="Carta di Credito (Mastercard)">Carta di Credito (Mastercard)</option>
+						            <option value="PayPal">PayPal</option>
+						            <option value="Bonifico Bancario">Bonifico Bancario</option>
+						        </select>
+						    </div>
+						
+						    <button type="submit" class="btn-checkout" style="margin-top: 10px;">
+						        Procedi al Checkout &rarr;
+						    </button>
+						</form>
                     </div>
                 </div>
             </c:otherwise>

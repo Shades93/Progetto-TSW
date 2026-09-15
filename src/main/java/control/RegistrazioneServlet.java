@@ -35,6 +35,8 @@ public class RegistrazioneServlet extends HttpServlet {
         String cognome = request.getParameter("cognome");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        String prefisso = request.getParameter("prefisso");
+        String numeroTelefono = request.getParameter("numeroTelefono");
 
         try {     // Verifica che l'email non esista già
             if (userDAO.doRetrieveByEmail(email) != null) {
@@ -47,8 +49,14 @@ public class RegistrazioneServlet extends HttpServlet {
             nuovoUtente.setNome(nome);
             nuovoUtente.setCognome(cognome);
             nuovoUtente.setEmail(email);
-            nuovoUtente.setPassword(PasswordHasher.toHash(password)); // Cifratura
+            nuovoUtente.setPassword(PasswordHasher.toHash(password));
             nuovoUtente.setAdmin(false);
+            
+            if (numeroTelefono != null && !numeroTelefono.trim().isEmpty()) {
+                nuovoUtente.setTelefono((prefisso != null ? prefisso : "") + " " + numeroTelefono.trim());
+            }
+            
+            
 
             userDAO.doSave(nuovoUtente);
 

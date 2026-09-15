@@ -4,10 +4,10 @@
 <div class="top-bar">
     <!-- Categorie/Filtri tè -->
     <div class="categorie-filtri">
-	    <a href="${pageContext.request.contextPath}/catalogo" class="${empty categoriaSelezionata ? 'active' : ''}">Tutti</a>
 	    <a href="${pageContext.request.contextPath}/catalogo?categoriaId=1" class="${categoriaSelezionata == 1 ? 'active' : ''}">Tè Verde</a>
 	    <a href="${pageContext.request.contextPath}/catalogo?categoriaId=2" class="${categoriaSelezionata == 2 ? 'active' : ''}">Tè Nero</a>
 	    <a href="${pageContext.request.contextPath}/catalogo?categoriaId=3" class="${categoriaSelezionata == 3 ? 'active' : ''}">Matcha</a>
+	    <a href="${pageContext.request.contextPath}/catalogo" class="${empty categoriaSelezionata ? 'active' : ''}">Tutti</a>
 	</div>
 <div class="top-bar-actions">
     <!-- Barra di ricerca AJAX -->
@@ -21,10 +21,6 @@
             </svg>
             <c:if test="${not empty sessionScope.carrello && sessionScope.carrello.count > 0}">
                 <span class="cart-badge">${sessionScope.carrello.count}</span>
-            </c:if>
-            <!-- Fallback di test se il carrello non è ancora dinamico: -->
-            <c:if test="${empty sessionScope.carrello}">
-                <span class="cart-badge">4</span>
             </c:if>
         </a>
    </div>

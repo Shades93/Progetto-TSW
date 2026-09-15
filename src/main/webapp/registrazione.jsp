@@ -47,6 +47,22 @@
                 <label for="indirizzo">Indirizzo Spedizione:</label>
                 <input type="text" id="indirizzo" name="indirizzo" value="${param.indirizzo}" placeholder="Via, Città, CAP" required>
             </div>
+            
+            <div class="form-group">
+			    <label for="numeroTelefono">Numero di Telefono:</label>
+			    <div style="display: flex; gap: 8px;">
+			        <select name="prefisso" id="prefisso" style="width: 35%; padding: 8px;">
+			            <option value="+39" selected>🇮🇹 +39 (IT)</option>
+			            <option value="+33">🇫🇷 +33 (FR)</option>
+			            <option value="+49">🇩🇪 +49 (DE)</option>
+			            <option value="+44">🇬🇧 +44 (UK)</option>
+			            <option value="+1">🇺🇸 +1 (US)</option>
+			        </select>
+			        <input type="tel" id="numeroTelefono" name="numeroTelefono" 
+			               pattern="[0-9]{8,12}" placeholder="Es. 3401234567" required 
+			               style="flex: 1; padding: 8px;">
+			    </div>
+			</div>
 
             <button type="submit" class="btn-primary">Registrati</button>
             <p class="form-footer-note">Hai già un account? <a href="${pageContext.request.contextPath}/login.jsp">Accedi qui</a>.</p>
