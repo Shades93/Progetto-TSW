@@ -32,7 +32,11 @@
                     </li>
                 </c:if>
 
-                <li class="nav-user"><span class="user-greeting">Ciao, ${sessionScope.user.nome}</span></li>
+                <li class="user-greeting">
+				    <span class="user-pill">
+				        <span class="user-icon">🌿</span> Ciao, <strong>${sessionScope.user.nome}</strong>
+				    </span>
+				</li>
                 <li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
             </c:when>
 

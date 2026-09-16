@@ -16,40 +16,49 @@
     <div class="card-wrapper">
         <div class="card">
             
-            <!-- Galleria Immagini a carosello-->
+<!-- Galleria Immagini a carosello-->
             <div class="product-imgs">
                 <div class="img-display">
                     <div class="img-showcase">
-                        <img src="${pageContext.request.contextPath}/immagini/${prodotto.id}_1.jpg" alt="${prodotto.nome}">
-                        <img src="${pageContext.request.contextPath}/immagini/${prodotto.id}_2.jpg" alt="${prodotto.nome}">
-                        <img src="${pageContext.request.contextPath}/immagini/${prodotto.id}_3.jpg" alt="${prodotto.nome}">
-                        <img src="${pageContext.request.contextPath}/immagini/${prodotto.id}_4.jpg" alt="${prodotto.nome}">
+                        <img src="${pageContext.request.contextPath}/immagini/${prodotto.id}_1.jpg" alt="${prodotto.nome}"
+                             onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/immagini/default.jpg';">
+                        <img src="${pageContext.request.contextPath}/immagini/${prodotto.id}_2.jpg" alt="${prodotto.nome}"
+                             onerror="this.remove();">
+                        <img src="${pageContext.request.contextPath}/immagini/${prodotto.id}_3.jpg" alt="${prodotto.nome}"
+                             onerror="this.remove();">
+                        <img src="${pageContext.request.contextPath}/immagini/${prodotto.id}_4.jpg" alt="${prodotto.nome}"
+                             onerror="this.remove();">
                     </div>
                 </div>
 
                 <div class="img-select">
                     <div class="img-item">
                         <a href="javascript:void(0)" data-id="1">
-                            <img src="${pageContext.request.contextPath}/immagini/${prodotto.id}_1.jpg" alt="${prodotto.nome}">
+                            <img src="${pageContext.request.contextPath}/immagini/${prodotto.id}_1.jpg" alt="${prodotto.nome}"
+                                 onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/immagini/default.jpg';">
                         </a>
                     </div>
-                    <div class="img-item">
+                    <div class="img-item" id="thumb-2">
                         <a href="javascript:void(0)" data-id="2">
-                            <img src="${pageContext.request.contextPath}/immagini/${prodotto.id}_2.jpg" alt="${prodotto.nome}">
+                            <img src="${pageContext.request.contextPath}/immagini/${prodotto.id}_2.jpg" alt="${prodotto.nome}"
+                                 onerror="document.getElementById('thumb-2').remove();">
                         </a>
                     </div>
-                    <div class="img-item">
+                    <div class="img-item" id="thumb-3">
                         <a href="javascript:void(0)" data-id="3">
-                            <img src="${pageContext.request.contextPath}/immagini/${prodotto.id}_3.jpg" alt="${prodotto.nome}">
+                            <img src="${pageContext.request.contextPath}/immagini/${prodotto.id}_3.jpg" alt="${prodotto.nome}"
+                                 onerror="document.getElementById('thumb-3').remove();">
                         </a>
                     </div>
-                    <div class="img-item">
+                    <div class="img-item" id="thumb-4">
                         <a href="javascript:void(0)" data-id="4">
-                            <img src="${pageContext.request.contextPath}/immagini/${prodotto.id}_4.jpg" alt="${prodotto.nome}">
+                            <img src="${pageContext.request.contextPath}/immagini/${prodotto.id}_4.jpg" alt="${prodotto.nome}"
+                                 onerror="document.getElementById('thumb-4').remove();">
                         </a>
                     </div>
                 </div>
             </div>
+
 
             <!-- Contenuto Prodotto -->
             <div class="product-content">

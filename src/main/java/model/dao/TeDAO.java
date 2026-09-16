@@ -11,9 +11,11 @@ public class TeDAO {
         return database.DatabaseConnection.getConnection();
     }
 
-    // Catalogo pubblico: recupera solo i prodotti attivi
+ // Catalogo pubblico
     public List<TeBean> doRetrieveAll() throws SQLException {
-        String sql = "SELECT * FROM te WHERE attivo = TRUE";
+        String sql = "SELECT t.*, c.nome_categoria "
+                   + "FROM te t JOIN categoria c ON t.id_categoria = c.id_categoria "
+                   + "WHERE t.attivo = TRUE";
         List<TeBean> list = new ArrayList<>();
 
         try (Connection con = getConnection();
@@ -29,7 +31,9 @@ public class TeDAO {
 
     // Ricerca per ID
     public TeBean doRetrieveByKey(int idTe) throws SQLException {
-        String sql = "SELECT * FROM te WHERE id_te = ?";
+        String sql = "SELECT t.*, c.nome_categoria "
+                   + "FROM te t JOIN categoria c ON t.id_categoria = c.id_categoria "
+                   + "WHERE t.id_te = ?";
         try (Connection con = getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
@@ -43,30 +47,31 @@ public class TeDAO {
         return null;
     }
 
-    // Ricerca prodotti per categoria
-public List<TeBean> doRetrieveByCategoria(int idCategoria) throws SQLException {
-    String sql = "SELECT * FROM te WHERE id_categoria = ? AND attivo = TRUE";
-    List<TeBean> list = new ArrayList<>();
+    // Ricerca per Categoria
+    public List<TeBean> doRetrieveByCategoria(int idCategoria) throws SQLException {
+        String sql = "SELECT t.*, c.nome_categoria "
+                   + "FROM te t JOIN categoria c ON t.id_categoria = c.id_categoria "
+                   + "WHERE t.id_categoria = ? AND t.attivo = TRUE";
+        List<TeBean> list = new ArrayList<>();
 
-    try (Connection con = getConnection();
-         PreparedStatement ps = con.prepareStatement(sql)) {
+        try (Connection con = getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
-        ps.setInt(1, idCategoria);
-        try (ResultSet rs = ps.executeQuery()) {
-            while (rs.next()) {
-                list.add(mapResultSetToBean(rs));
+            ps.setInt(1, idCategoria);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    list.add(mapResultSetToBean(rs));
+                }
             }
         }
+        return list;
     }
-    return list;
-}
 
-
-
-
-    // Barra di ricerca con suggerimenti dinamici AJAX
+    // Barra di ricerca
     public List<TeBean> doRetrieveBySearch(String query) throws SQLException {
-        String sql = "SELECT * FROM te WHERE nome_te LIKE ? AND attivo = TRUE LIMIT 5";
+        String sql = "SELECT t.*, c.nome_categoria "
+                   + "FROM te t JOIN categoria c ON t.id_categoria = c.id_categoria "
+                   + "WHERE t.nome_te LIKE ? AND t.attivo = TRUE LIMIT 5";
         List<TeBean> list = new ArrayList<>();
 
         try (Connection con = getConnection();
@@ -81,6 +86,7 @@ public List<TeBean> doRetrieveByCategoria(int idCategoria) throws SQLException {
         }
         return list;
     }
+ 
 
     // Area Admin: Inserimento nuovo prodotto
     public void doSave(TeBean te) throws SQLException {
@@ -159,6 +165,7 @@ public List<TeBean> doRetrieveByCategoria(int idCategoria) throws SQLException {
         te.setProvenienza(rs.getString("provenienza"));
         te.setImmagine(rs.getString("immagine"));
         te.setAttivo(rs.getBoolean("attivo"));
+        te.setNomeCategoria(rs.getString("nome_categoria"));
         return te;
     }
 }

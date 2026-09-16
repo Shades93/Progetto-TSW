@@ -29,7 +29,6 @@ public class TeBean implements Serializable {
         this.idTe = idTe;
     }
 
-    // Alias per compatibilità con le JSP scritte in precedenza (${p.id})
     public int getId() {
         return idTe;
     }
@@ -50,7 +49,6 @@ public class TeBean implements Serializable {
         this.nomeTe = nomeTe;
     }
 
-    // Alias per compatibilità con le JSP (${p.nome})
     public String getNome() {
         return nomeTe;
     }
@@ -119,9 +117,18 @@ public class TeBean implements Serializable {
         this.attivo = attivo;
     }
 
-    // Helper per stampare il prezzo formattato in euro nelle JSP (${p.priceCurrencyFormat})
     public String getPriceCurrencyFormat() {
         NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.ITALY);
         return nf.format(this.prezzo);
+    }
+    
+    private String nomeCategoria;
+
+    public String getNomeCategoria() {
+        return nomeCategoria;
+    }
+
+    public void setNomeCategoria(String nomeCategoria) {
+        this.nomeCategoria = nomeCategoria;
     }
 }

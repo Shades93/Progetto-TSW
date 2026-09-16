@@ -22,15 +22,15 @@ body {
     grid-column: 1;
     grid-row: 1;
     background-color: var(--nav-bg);
-    padding: 1rem 0 1.5rem 1rem; /* Margini verticali speculari per centrare il blocco */
+    padding: 1rem 0 1.5rem 1rem;
     display: flex;
     align-items: stretch;
 }
 
-/* 2. Logo card chiara */
+
 .main-header .logo {
     background-color: var(--bg-page);
-    border-radius: 2.5rem 0 2.5rem 0; /* Curva alto-sx e basso-dx */
+    border-radius: 2.5rem 0 2.5rem 0;
     margin: 0;
     padding: 1.2rem 1rem;
     width: 100%;
@@ -39,6 +39,8 @@ body {
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
+    border-right: 1.5px solid rgba(74, 110, 36, 0.35);
+    border-bottom: 1.5px solid rgba(74, 110, 36, 0.35);
 }
 
 .main-header .logo h1 {
@@ -106,6 +108,38 @@ body {
     padding: 1rem 2.5rem;
     border-radius: 100vw 0 0 100vw;
     display: block;
+}
+
+.nav-list li.user-greeting {
+    padding: 0.6rem 1.8rem;
+    pointer-events: none;
+}
+
+.user-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    background-color: var(--bg-page); /* Crema chiaro solido (#fdfae9) */
+    color: #2b4213; /* Verde bosco scuro leggibile */
+    padding: 0.45rem 1rem;
+    border-radius: 50px;
+    border: 1px solid rgba(74, 110, 36, 0.25);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.5px;
+}
+
+.user-pill strong {
+    color: #17260a;
+    font-weight: 700;
+}
+
+.user-leaf-icon {
+    width: 1.15rem;
+    height: 1.15rem;
+    fill: #4a6e24;
+    flex-shrink: 0;
 }
 
 .nav-list a {
@@ -192,17 +226,15 @@ main.container,
     padding: 0 2rem;
     background-color: var(--nav-bg);
     background-image: url('../immagini/pattern.jpg');
-    background-repeat: repeat;  
-    
-    
+    background-repeat: repeat;
     margin: 1rem 1.5rem 1.5rem 1.5rem; 
     align-self: stretch;
     box-sizing: border-box;
-    
-    
     border-radius: 1.25rem; 
-    border: 2px solid rgba(253, 250, 233, 0.6);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(30, 48, 14, 0.45);    
+    box-shadow: 
+        0 10px 25px rgba(0, 0, 0, 0.35),
+        inset 0 0 18px rgba(0, 0, 0, 0.4);  
     position: relative;
     z-index: 1;
 }
@@ -259,7 +291,6 @@ main.container,
     width: 260px;
 }
 
-/* Barra e icona carrello attaccati*/
 .top-bar-actions {
     display: flex;
     flex-direction: row;
@@ -271,8 +302,7 @@ main.container,
 .top-cart-btn {
     position: relative;
     display: inline-flex;
-    margin-top: 2rem;
-    transform: translateY(12px);
+    margin: 0;
     align-items: center;
     justify-content: center;
     width: 39px;
@@ -283,6 +313,7 @@ main.container,
     text-decoration: none;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
     flex-shrink: 0;
+    transform: none;
 }
 
 .top-cart-btn svg {
@@ -307,6 +338,12 @@ main.container,
     border: 2px solid var(--bg-page);
 }
 
+.error-inline {
+    display: block;
+    font-size: 0.85rem;
+    margin-top: 4px;
+    font-weight: 500;
+}
 
 #searchSuggestions {
     display: none;
@@ -350,4 +387,18 @@ footer {
     font-size: 0.95rem;
     color: #555;
     background-color: var(--bg-page);
+}
+
+.main-nav .user-pill {
+    font-size: 18px !important;
+    padding: 8px 18px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    line-height: 1.2 !important;
+}
+
+.main-nav .user-pill .user-leaf-icon {
+    width: 18px !important;
+    height: 18px !important;
 }

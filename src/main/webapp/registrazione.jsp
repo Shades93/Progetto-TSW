@@ -39,7 +39,7 @@
 
             <div class="form-group">
                 <label for="password">Password:</label>
-                <input type="password" id="password" name="password" placeholder="Almeno 8 caratteri con lettere e numeri" required>
+                <input type="password" id="password" name="password" placeholder="Almeno 3" required>
                 <span id="passwordError" class="error-inline"></span>
             </div>
 
@@ -70,5 +70,55 @@
     </div>
 </main>
 
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+	    const form = document.getElementById('registrationForm');
+	    const emailInput = document.getElementById('email');
+	    const emailFeedback = document.getElementById('emailError');
+	    let isEmailAlreadyTaken = false;
+	
+	    if (!emailInput || !emailFeedback) return;
+	
+	    emailInput.addEventListener('blur', function () {
+	        const emailVal = this.value.trim();
+	        if (emailVal === '') {
+	            emailFeedback.textContent = '';
+	            emailInput.style.borderColor = '';
+	            isEmailAlreadyTaken = false;
+	            return;
+	        }
+	
+	        fetch('${pageContext.request.contextPath}/check-email?email=' + encodeURIComponent(emailVal))
+	            .then(res => res.json())
+	            .then(data => {
+	                if (data.exists) {
+	                    isEmailAlreadyTaken = true;
+	                    emailFeedback.textContent = 'Questa email è già registrata!';
+	                    emailFeedback.style.color = '#b33927';
+	                    emailInput.style.borderColor = '#b33927';
+	                } else {
+	                    isEmailAlreadyTaken = false;
+	                    emailFeedback.textContent = 'Email disponibile';
+	                    emailFeedback.style.color = '#2e7d32';
+	                    emailInput.style.borderColor = '#2e7d32';
+	                }
+	            })
+	            .catch(err => console.error('Errore controllo email:', err));
+	    });
+	
+	    
+	    if (form) {
+	        form.addEventListener('submit', function (e) {
+	            if (isEmailAlreadyTaken) {
+	                e.preventDefault();
+	                emailFeedback.textContent = 'Non puoi registrarti con un\'email già in uso!';
+	                emailFeedback.style.color = '#b33927';
+	                emailInput.focus();
+	            }
+	        });
+	    }
+	});
+</script>
 <script src="${pageContext.request.contextPath}/js/validation-registration.js"></script>
+
 <jsp:include page="/fragments/footer.jsp" />

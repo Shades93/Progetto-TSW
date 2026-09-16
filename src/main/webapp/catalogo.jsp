@@ -22,9 +22,9 @@
     <div class="product-grid">
         <c:forEach var="p" items="${prodotti}">
             <div class="product-card">
-                <img src="${pageContext.request.contextPath}/images/${p.immagine != null && !p.immagine.isEmpty() ? p.immagine : 'default.jpg'}" alt="${p.nome}" class="product-thumb">
+                <img src="${pageContext.request.contextPath}/immagini/${not empty p.immagine ? p.immagine : 'default.jpg'}" alt="${p.nome}" class="product-thumb">
                 <h3>${p.nome}</h3>
-                <p class="product-category">${p.idCategoria}</p>
+                <p class="product-category">${p.nomeCategoria}</p>
                 <p class="product-price">${p.prezzo}</p>
                 
                 <div class="card-actions">

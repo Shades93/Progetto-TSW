@@ -1,0 +1,412 @@
+.admin-form-card {
+    background: #ffffff;
+    max-width: 720px;
+    margin: 1.5rem 0 3rem 0;
+    padding: 2.2rem 2.5rem;
+    border-radius: 1.25rem;
+    border: 1px solid rgba(74, 110, 36, 0.15);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+}
+
+.form-row {
+    display: flex;
+    gap: 1.2rem;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.form-group label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #2b4213;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 0.65rem 0.9rem;
+    border-radius: 8px;
+    border: 1px solid #d4decb;
+    background-color: #fafcf7;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: #17260a;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.form-group textarea {
+    resize: vertical;
+    line-height: 1.5;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: #4a6e24;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(74, 110, 36, 0.12);
+}
+
+.form-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid #f1ece4;
+}
+
+.form-actions .btn-primary {
+    cursor: pointer;
+    background-color: #4a6e24;
+    color: #ffffff;
+    border: 1px solid #4a6e24;
+    padding: 0.65rem 1.4rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.form-actions .btn-primary:hover {
+    background-color: #2b4213;
+    border-color: #2b4213;
+}
+
+.form-actions .btn-secondary {
+    text-decoration: none;
+    color: #555;
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    padding: 0.65rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.form-actions .btn-secondary:hover {
+    background-color: #e5e5e5;
+    color: #222;
+}
+
+@media (max-width: 600px) {
+    .form-row {
+        flex-direction: column;
+        gap: 1.3rem;
+    }
+}
+
+.admin-container {
+    max-width: 1100px;
+    margin: 2rem auto 4rem auto;
+    padding: 0 1.2rem;
+}
+
+.admin-header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.8rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.admin-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #1b2e0e;
+    margin: 0;
+}
+
+.admin-subtitle {
+    margin: 0.2rem 0 0 0;
+    font-size: 0.95rem;
+    color: #637353;
+}
+
+.admin-alert {
+    padding: 0.85rem 1.2rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+}
+
+.alert-success {
+    background-color: #eaf2e3;
+    color: #2b4213;
+    border: 1px solid rgba(74, 110, 36, 0.2);
+}
+
+.alert-danger {
+    background-color: #fdeee9;
+    color: #a82e1d;
+    border: 1px solid rgba(168, 46, 29, 0.2);
+}
+
+.table-card {
+    background: #ffffff;
+    border-radius: 1.25rem;
+    border: 1px solid rgba(74, 110, 36, 0.15);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03);
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+.admin-table thead {
+    background-color: #f7f9f4;
+    border-bottom: 1.5px solid #d4decb;
+}
+
+.admin-table th {
+    padding: 1rem 1.2rem;
+    font-weight: 600;
+    color: #2b4213;
+    letter-spacing: 0.02em;
+}
+
+.admin-table td {
+    padding: 1rem 1.2rem;
+    border-bottom: 1px solid #edf1e8;
+    color: #333;
+    vertical-align: middle;
+}
+
+.admin-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.admin-table tbody tr:hover {
+    background-color: #fafcf8;
+}
+
+.cell-id {
+    color: #88947d;
+    font-weight: 600;
+}
+
+.cell-product strong {
+    color: #17260a;
+}
+
+.pill-category {
+    background-color: #f1f5ec;
+    color: #4a6e24;
+    padding: 0.25rem 0.65rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.cell-price {
+    font-weight: 600;
+    color: #17260a;
+}
+
+.cell-iva {
+    color: #777;
+    font-size: 0.85rem;
+}
+
+.stock-pill {
+    display: inline-block;
+    padding: 0.25rem 0.6rem;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.stock-ok {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.stock-low {
+    background: #fff3e0;
+    color: #ef6c00;
+}
+
+.stock-out {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.cell-actions {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.btn-action {
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.45rem 0.8rem;
+    border-radius: 6px;
+    display: inline-block;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-edit {
+    background: #ffffff;
+    color: #4a6e24;
+    border: 1px solid #4a6e24;
+    margin-right: 0.4rem;
+}
+
+.btn-edit:hover {
+    background: #4a6e24;
+    color: #ffffff;
+}
+
+.btn-delete {
+    background: #ffffff;
+    color: #b33927;
+    border: 1px solid #f0c3bd;
+}
+
+.btn-delete:hover {
+    background: #b33927;
+    color: #ffffff;
+    border-color: #b33927;
+}
+
+.filter-card {
+    background: #ffffff;
+    border-radius: 1rem;
+    border: 1px solid rgba(74, 110, 36, 0.15);
+    padding: 1.2rem 1.6rem;
+    margin-bottom: 1.8rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+.admin-filter-form {
+    display: flex;
+    align-items: flex-end;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+}
+
+.filter-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    min-width: 140px;
+}
+
+.filter-field label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #2b4213;
+}
+
+.filter-field input {
+    padding: 0.55rem 0.8rem;
+    border-radius: 8px;
+    border: 1px solid #d4decb;
+    background-color: #fafcf7;
+    font-family: inherit;
+    font-size: 0.9rem;
+    color: #17260a;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.filter-field input:focus {
+    border-color: #4a6e24;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(74, 110, 36, 0.12);
+}
+
+.filter-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.cell-date {
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.admin-table .user-pill {
+    background-color: #f7f5ed;
+    color: #5c4f3d;
+    padding: 0.25rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.status-pill {
+    display: inline-block;
+    padding: 0.25rem 0.7rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.status-pill.status-completato,
+.status-pill.status-consegnato {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.status-pill.status-in_elaborazione,
+.status-pill.status-elaborazione,
+.status-pill.status-spedito {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+.status-pill.status-in_attesa,
+.status-pill.status-attesa {
+    background: #fff8e1;
+    color: #f57f17;
+}
+
+.status-pill.status-annullato,
+.status-pill.status-cancellato {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.empty-table-msg {
+    text-align: center;
+    padding: 2.5rem 1rem !important;
+    color: #777;
+    font-style: italic;
+}
+
+@media (max-width: 768px) {
+    .admin-filter-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .filter-actions {
+        margin-top: 0.5rem;
+    }
+}
