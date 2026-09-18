@@ -42,6 +42,13 @@
                 <input type="password" id="password" name="password" placeholder="Almeno 3" required>
                 <span id="passwordError" class="error-inline"></span>
             </div>
+            
+            <!-- CONFERMA PASSWORD -->
+			<div class="form-group">
+			    <label for="confirmPassword">Conferma Password:</label>
+			    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Ripeti la password" required>
+			    <span id="confirmPasswordError" class="error-inline"></span>
+			</div>
 
             <div class="form-group">
                 <label for="indirizzo">Indirizzo Spedizione:</label>

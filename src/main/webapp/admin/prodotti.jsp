@@ -10,6 +10,8 @@
     <jsp:param name="page" value="admin-prodotti" />
 </jsp:include>
 
+<jsp:include page="/fragments/barraAdmin.jsp" />
+
 <main class="container admin-container">
     <div class="admin-header-bar">
         <div>

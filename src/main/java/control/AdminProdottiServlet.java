@@ -13,6 +13,13 @@ import javax.servlet.http.HttpSession;
 import model.TeBean;
 import model.UserBean;
 import model.dao.TeDAO;
+import javax.servlet.annotation.MultipartConfig;
+
+@MultipartConfig(
+	    fileSizeThreshold = 1024 * 1024 * 1, // 1 MB
+	    maxFileSize = 1024 * 1024 * 10,      // 10 MB
+	    maxRequestSize = 1024 * 1024 * 15    // 15 MB
+	)
 
 @WebServlet("/admin/prodotti")
 public class AdminProdottiServlet extends HttpServlet {
@@ -110,7 +117,6 @@ public class AdminProdottiServlet extends HttpServlet {
             p.setProvenienza(request.getParameter("provenienza"));
 
             if ("update".equals(action)) {
-                // Legge l'ID del prodotto da aggiornare
                 String idParam = request.getParameter("id");
                 if (idParam == null) idParam = request.getParameter("idTe");
                 p.setIdTe(Integer.parseInt(idParam));

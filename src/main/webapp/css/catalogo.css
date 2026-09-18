@@ -1,6 +1,6 @@
 /* Titolo pagina */
 .container h2 {
-    font-family: "Cormorant Garamond", serif;
+    font-family: "Noto Serif", serif;
     font-size: 2.2rem;
     color: #2b4213;
     margin: 0 0 2rem 0;
@@ -44,7 +44,7 @@
 /* Titolo tè */
 .product-card h3 {
     margin: 0 0 0.4rem 0;
-    font-family: "Cormorant Garamond", serif;
+    font-family: "Noto Serif", serif;
     font-size: 1.45rem;
     font-weight: 700;
     color: #2b4213;
@@ -133,4 +133,199 @@
     border-radius: 8px;
     font-size: 0.8rem;
     font-weight: 600;
+}
+
+
+/* =========================================
+   PAGINA I MIEI ORDINI
+   ========================================= */
+
+.orders-header-bar {
+    margin-bottom: 2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1.5px solid rgba(74, 110, 36, 0.15);
+}
+
+.orders-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: #1b2e0e;
+    margin: 0;
+    line-height: 1.1;
+}
+
+.orders-subtitle {
+    margin: 0.35rem 0 0 0;
+    font-size: 1.05rem;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-style: italic;
+    color: #556b43;
+}
+
+/* Tabella Card */
+.orders-table-card {
+    background: #ffffff;
+    border-radius: 1.25rem;
+    border: 1px solid rgba(74, 110, 36, 0.15);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03);
+    overflow-x: auto;
+}
+
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+.orders-table thead {
+    background-color: #f7f9f4;
+    border-bottom: 1.5px solid #d4decb;
+}
+
+.orders-table th {
+    padding: 1rem 1.4rem;
+    font-weight: 600;
+    color: #2b4213;
+    letter-spacing: 0.02em;
+}
+
+.orders-table td {
+    padding: 1.1rem 1.4rem;
+    border-bottom: 1px solid #edf1e8;
+    vertical-align: middle;
+}
+
+.orders-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.orders-table tbody tr:hover {
+    background-color: #fafcf8;
+}
+
+/* Colonne specifiche */
+.order-id {
+    font-weight: 700;
+    color: #4a6e24;
+}
+
+.order-date {
+    color: #555555;
+    font-size: 0.9rem;
+}
+
+.order-total {
+    font-weight: 700;
+    color: #17260a;
+    font-size: 1.05rem;
+}
+
+/* Pillole di stato */
+.order-status-pill {
+    display: inline-block;
+    padding: 0.28rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.status-completato {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid rgba(46, 125, 50, 0.2);
+}
+
+.status-spedito {
+    background: #e3f2fd;
+    color: #1565c0;
+    border: 1px solid rgba(21, 101, 192, 0.2);
+}
+
+.status-in-attesa {
+    background: #fff8e1;
+    color: #b78103;
+    border: 1px solid rgba(183, 129, 3, 0.2);
+}
+
+.status-annullato {
+    background: #ffebee;
+    color: #c62828;
+    border: 1px solid rgba(198, 40, 40, 0.2);
+}
+
+/* Pulsante Dettaglio / Fattura */
+.btn-invoice {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.95rem;
+    background: #ffffff;
+    color: #4a6e24;
+    border: 1.5px solid #4a6e24;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.btn-invoice:hover {
+    background-color: #4a6e24;
+    color: #ffffff;
+    box-shadow: 0 3px 8px rgba(74, 110, 36, 0.25);
+    transform: translateY(-1px);
+}
+
+/* Card stato vuoto */
+.orders-empty-card {
+    background: #ffffff;
+    padding: 3.5rem 2rem;
+    border-radius: 1.25rem;
+    border: 1px solid rgba(74, 110, 36, 0.15);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    text-align: center;
+    max-width: 600px;
+    margin: 2rem auto;
+}
+
+.orders-empty-card .empty-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.orders-empty-card h3 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.8rem;
+    color: #1b2e0e;
+    margin: 0 0 0.5rem 0;
+}
+
+.orders-empty-card p {
+    color: #666;
+    margin: 0 0 1.8rem 0;
+    font-size: 1rem;
+}
+
+.btn-orders-catalog {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 0.7rem 1.6rem;
+    border-radius: 50px;
+    background-color: #4a6e24;
+    color: #ffffff;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(74, 110, 36, 0.22);
+    transition: all 0.2s ease;
+}
+
+.btn-orders-catalog:hover {
+    background-color: #38551a;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(74, 110, 36, 0.3);
 }

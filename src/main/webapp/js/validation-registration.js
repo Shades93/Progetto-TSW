@@ -44,6 +44,24 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
     });
+	
+	const passwordInput = document.getElementById('password');
+	const confirmPasswordInput = document.getElementById('confirmPassword');
+	const confirmPasswordError = document.getElementById('confirmPasswordError');
+
+	// Controllo in tempo reale durante la digitazione
+	if (confirmPasswordInput) {
+	    confirmPasswordInput.addEventListener('input', function () {
+	        if (this.value !== passwordInput.value) {
+	            confirmPasswordError.textContent = 'Le password non coincidono.';
+	            confirmPasswordError.style.color = '#b33927';
+	            confirmPasswordInput.style.borderColor = '#b33927';
+	        } else {
+	            confirmPasswordError.textContent = '';
+	            confirmPasswordInput.style.borderColor = '#2e7d32';
+	        }
+	    });
+	}
 
     // Controllo al submit
     form.addEventListener('submit', function (e) {
@@ -67,6 +85,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
         }
+		
+		if (confirmPasswordInput && confirmPasswordInput.value !== passwordInput.value) {
+				    e.preventDefault();
+				    confirmPasswordError.textContent = 'Le password non coincidono.';
+				    confirmPasswordError.style.color = '#b33927';
+				    confirmPasswordInput.style.borderColor = '#b33927';
+				    if (!firstInvalidField) firstInvalidField = confirmPasswordInput;
+				}
 
         // Imposta il focus sul primo campo errato
         if (firstInvalidField) {

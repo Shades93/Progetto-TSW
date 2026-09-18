@@ -3,7 +3,7 @@
 
 <jsp:include page="/fragments/header.jsp">
     <jsp:param name="title" value="Ordine Confermato - Tèrapia" />
-    <jsp:param name="pageCss" value="ordine" />
+    <jsp:param name="pageCss" value="dettaglio-ordine" />
 </jsp:include>
 
 <jsp:include page="/fragments/nav.jsp">

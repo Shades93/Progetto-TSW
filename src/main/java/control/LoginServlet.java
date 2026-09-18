@@ -49,6 +49,7 @@ public class LoginServlet extends HttpServlet {
             if (user != null) {
                 HttpSession session = request.getSession(true);
                 session.setAttribute("user", user);
+                session.setMaxInactiveInterval(30 * 60);
 
                 // Reindirizzamento basato sul ruolo
                 if (user.isAdmin()) {

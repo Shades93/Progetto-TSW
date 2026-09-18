@@ -6,10 +6,12 @@
 </jsp:include>
 <jsp:include page="/fragments/nav.jsp" />
 
+<jsp:include page="/fragments/barraAdmin.jsp" />
+
 <main class="container admin-container">
     <h2>${prodotto != null ? 'Modifica Scheda Prodotto' : 'Inserimento Nuovo Prodotto'}</h2>
 
-    <form action="${pageContext.request.contextPath}/admin/prodotti" method="post" class="admin-form-card">
+    <form action="${pageContext.request.contextPath}/admin/prodotti" method="post" enctype="multipart/form-data" class="admin-form-card">
         <input type="hidden" name="action" value="${prodotto != null ? 'update' : 'insert'}">
         <c:if test="${prodotto != null}">
             <input type="hidden" name="id" value="${prodotto.idTe}">
@@ -38,9 +40,52 @@
             </div>
 
             <div class="form-group">
-                <label for="immagine">Nome File Immagine</label>
-                <input type="text" id="immagine" name="immagine" value="${prodotto != null ? prodotto.immagine : ''}" placeholder="img">
-            </div>
+			    <label>Immagine:</label>
+			    
+			    <!-- Input nascosto -->
+			    <input type="file" id="foto" name="foto" accept="image/*" style="display: none;" onchange="updateFileName(this)">
+			    
+			    <!-- Pulsante personalizzato color panna -->
+<label for="foto" class="btn-custom-upload" style="
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: 0.5rem;
+    cursor: pointer;
+    width: fit-content;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #2b4213;
+    background-color: var(--bg-page, #fdfae9);
+    border: 1.5px solid rgba(74, 110, 36, 0.35);
+    border-radius: 50px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    transition: all 0.2s ease;
+">
+    📁 Carica Immagine
+</label>
+			    <span id="nomeFileScelto" style="margin-left: 10px; font-size: 0.9rem; color: #555;">Nessun file selezionato</span>
+			
+			    <c:if test="${not empty prodotto.immagine}">
+			        <small style="display:block; margin-top:6px; color:#555;">
+			            Immagine attuale: <strong>${prodotto.immagine}</strong> (lascia vuoto per non cambiarla)
+			        </small>
+			        <input type="hidden" name="vecchiaImmagine" value="${prodotto.immagine}">
+			    </c:if>
+			</div>
+			
+			<script>
+			function updateFileName(input) {
+			    const display = document.getElementById('nomeFileScelto');
+			    if (input.files && input.files[0]) {
+			        display.textContent = input.files[0].name;
+			    } else {
+			        display.textContent = 'Nessun file selezionato';
+			    }
+			}
+			</script>
+            
         </div>
 
         <div class="form-row form-row-three">
