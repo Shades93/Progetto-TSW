@@ -37,12 +37,12 @@
 
         <div class="invoice-intro">
             <div>
-                Gentile <strong>${sessionScope.user.nome} ${sessionScope.user.cognome}</strong>,<br>
+                Gentile <strong><c:out value="${sessionScope.user.nome} ${sessionScope.user.cognome}"/></strong>,<br>
                 grazie per aver acquistato presso la nostra sala da tè.
             </div>
             <div style="text-align: right;">
                 Stato Documento:<br>
-                <strong style="color: #2f6448;">${ordine.stato}</strong>
+                <strong style="color: #2f6448;"><c:out value="${ordine.stato}"/></strong>
             </div>
         </div>
 
@@ -59,7 +59,7 @@
             <tbody>
                 <c:forEach var="item" items="${ordine.dettagli}">
                     <tr>
-                        <td><strong>${item.nomeTe}</strong></td>
+                        <td><strong><c:out value="${item.nomeTe}"/></strong></td>
                         <td class="col-center item-id">#${item.idTe}</td>
                         <td class="col-center">${item.quantita}</td>
                         <td class="col-right">
@@ -104,15 +104,15 @@
             <div class="footer-block">
                 <h5>Destinazione e Spedizione</h5>
                 <p>
-                    ${sessionScope.user.nome} ${sessionScope.user.cognome}<br>
-                    ${ordine.indirizzoSpedizione}<br>
-                    Email: ${sessionScope.user.email}
+                    <c:out value="${sessionScope.user.nome} ${sessionScope.user.cognome}"/><br>
+                    <c:out value="${ordine.indirizzoSpedizione}"/><br>
+                    Email: <c:out value="${sessionScope.user.email}"/>
                 </p>
             </div>
             <div class="footer-block">
                 <h5>Dettagli Pagamento</h5>
                 <p>
-                    Metodo: <strong>${ordine.metodoPagamento}</strong><br>
+                    Metodo: <strong><c:out value="${ordine.metodoPagamento}"/></strong><br>
                     Transazione: Eseguita con successo<br>
                     Ricevuta fiscale conforme Art. 22 D.P.R. 633/72
                 </p>
@@ -121,4 +121,4 @@
     </div>
 </main>
 
-<jsp:include page="/fragments/footer.jsp" />
+<jsp:include page="/fragments/footer.jsp" />

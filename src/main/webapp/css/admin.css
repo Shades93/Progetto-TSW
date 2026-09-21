@@ -492,4 +492,39 @@
     }
 }
 
+@media (max-width: 860px) {
+    .admin-top-bar {
+        grid-column: 1;
+        grid-row: auto;
+        flex-wrap: wrap;
+    }
 
+    .admin-top-bar-label {
+        font-size: 1.2rem;
+    }
+
+    .admin-top-bar-link {
+        padding: 0.4rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .admin-header-bar {
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 700px) {
+    .admin-table {
+        min-width: 640px;
+    }
+
+    .admin-title {
+        font-size: 1.8rem;
+    }
+
+    .admin-form-card {
+        padding: 1.4rem 1.1rem;
+    }
+}

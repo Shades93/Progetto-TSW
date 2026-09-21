@@ -6,11 +6,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tèrapia</title>
+    <title><c:out value="${empty param.title ? 'Tèrapia' : param.title}"/></title>
+    <meta name="csrf-token" content="${sessionScope.csrfToken}">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <!--Codice per css specifici per ogni pagina-->
     <c:if test="${not empty param.pageCss}">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/${param.pageCss}.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/<c:out value="${param.pageCss}"/>.css">
     </c:if>
 </head>
 <body>

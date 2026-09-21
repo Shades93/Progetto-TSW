@@ -11,7 +11,8 @@
 <main class="container admin-container">
     <h2>${prodotto != null ? 'Modifica Scheda Prodotto' : 'Inserimento Nuovo Prodotto'}</h2>
 
-    <form action="${pageContext.request.contextPath}/admin/prodotti" method="post" enctype="multipart/form-data" class="admin-form-card">
+    <form action="${pageContext.request.contextPath}/admin/prodotti" method="post" enctype="multipart/form-data" class="admin-form-card" data-validate>
+        <input type="hidden" name="csrf" value="${sessionScope.csrfToken}">
         <input type="hidden" name="action" value="${prodotto != null ? 'update' : 'insert'}">
         <c:if test="${prodotto != null}">
             <input type="hidden" name="id" value="${prodotto.idTe}">
@@ -19,12 +20,12 @@
 
         <div class="form-group">
             <label for="nome">Nome Prodotto</label>
-            <input type="text" id="nome" name="nome" value="${prodotto != null ? prodotto.nomeTe : ''}" required>
+            <input type="text" id="nome" name="nome" value="<c:out value="${prodotto != null ? prodotto.nomeTe : ''}"/>" maxlength="150" required>
         </div>
 
         <div class="form-group">
             <label for="descrizione">Descrizione Completa</label>
-            <textarea id="descrizione" name="descrizione" rows="4" required>${prodotto != null ? prodotto.descrizione : ''}</textarea>
+            <textarea id="descrizione" name="descrizione" rows="4" required><c:out value="${prodotto != null ? prodotto.descrizione : ''}"/></textarea>
         </div>
 
         <div class="form-row">
@@ -43,7 +44,7 @@
 			    <label>Immagine:</label>
 			    
 			    <!-- Input nascosto -->
-			    <input type="file" id="foto" name="foto" accept="image/*" style="display: none;" onchange="updateFileName(this)">
+			    <input type="file" id="foto" name="foto" accept="image/*" data-max-bytes="10485760" style="display: none;" onchange="updateFileName(this)">
 			    
 			    <!-- Pulsante personalizzato color panna -->
 <label for="foto" class="btn-custom-upload" style="
@@ -69,9 +70,8 @@
 			
 			    <c:if test="${not empty prodotto.immagine}">
 			        <small style="display:block; margin-top:6px; color:#555;">
-			            Immagine attuale: <strong>${prodotto.immagine}</strong> (lascia vuoto per non cambiarla)
+			            Immagine attuale: <strong><c:out value="${prodotto.immagine}"/></strong> (lascia vuoto per non cambiarla)
 			        </small>
-			        <input type="hidden" name="vecchiaImmagine" value="${prodotto.immagine}">
 			    </c:if>
 			</div>
 			
@@ -91,17 +91,17 @@
         <div class="form-row form-row-three">
             <div class="form-group">
                 <label for="prezzo">Prezzo Unitario (€)</label>
-                <input type="number" id="prezzo" name="prezzo" step="0.01" min="0.01" value="${prodotto != null ? prodotto.prezzo : ''}" required>
+                <input type="number" id="prezzo" name="prezzo" step="0.01" min="0.01" max="99999.99" value="${prodotto != null ? prodotto.prezzo : ''}" required>
             </div>
 
             <div class="form-group">
                 <label for="iva">Aliquota IVA (%)</label>
-                <input type="number" id="iva" name="iva" step="0.5" min="0" value="${prodotto != null ? prodotto.iva : '22.0'}" required>
+                <input type="number" id="iva" name="iva" step="0.5" min="0" max="100" value="${prodotto != null ? prodotto.iva : '22.0'}" required>
             </div>
 
             <div class="form-group">
                 <label for="quantitaDisponibile">Giacenza Magazzino</label>
-                <input type="number" id="quantitaDisponibile" name="quantitaDisponibile" min="0" value="${prodotto != null ? prodotto.quantitaDisponibile : '0'}" required>
+                <input type="number" id="quantitaDisponibile" name="quantitaDisponibile" min="0" max="100000" value="${prodotto != null ? prodotto.quantitaDisponibile : '0'}" required>
             </div>
         </div>
 

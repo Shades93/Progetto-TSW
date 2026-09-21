@@ -1,21 +1,35 @@
+// Il percorso dell'applicazione lo scrive la JSP nell'attributo data-context del tag <script>
+const scriptCorrente = document.currentScript;
+
 document.addEventListener("DOMContentLoaded", () => {
     const searchInput = document.getElementById("searchInput");
     const suggestionsBox = document.getElementById("searchSuggestions");
 
     if (!searchInput || !suggestionsBox) return;
 
-    const contextPath = window.location.pathname.split('/')[1] ? ('/' + window.location.pathname.split('/')[1]) : '';
+    const contextPath = (scriptCorrente && scriptCorrente.dataset.context) || '';
     let currentFocusIndex = -1;
+
+    let timer;
+    let ultimaRichiesta = 0;
 
     searchInput.addEventListener("input", () => {
         const query = searchInput.value.trim();
         currentFocusIndex = -1;
+        clearTimeout(timer);
 
         if (query.length < 2) {
+            ultimaRichiesta++;
             suggestionsBox.innerHTML = "";
             suggestionsBox.style.display = "none";
             return;
         }
+
+        timer = setTimeout(() => cercaSuggerimenti(query), 250);
+    });
+
+    function cercaSuggerimenti(query) {
+        const numero = ++ultimaRichiesta;
 
         fetch(`${contextPath}/search-suggestions?q=${encodeURIComponent(query)}`)
         .then(response => {
@@ -23,6 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return response.json();
         })
         .then(data => {
+            if (numero !== ultimaRichiesta) return;
             suggestionsBox.innerHTML = "";
             currentFocusIndex = -1;
 
@@ -72,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
             suggestionsBox.style.overflow = "hidden";
         })
         .catch(err => console.error("Errore AJAX:", err));
-    });
+    }
 
     // Gestione navigazione con Frecce e Invio
     searchInput.addEventListener("keydown", (e) => {

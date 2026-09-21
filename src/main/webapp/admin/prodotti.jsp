@@ -25,6 +25,7 @@
     <c:if test="${param.msg == 'deleted'}"><div class="admin-alert alert-danger">Prodotto eliminato con successo.</div></c:if>
     <c:if test="${param.msg == 'updated'}"><div class="admin-alert alert-success">Prodotto aggiornato correttamente.</div></c:if>
     <c:if test="${param.msg == 'inserted'}"><div class="admin-alert alert-success">Nuovo prodotto inserito a catalogo.</div></c:if>
+    <c:if test="${param.msg == 'badimage'}"><div class="admin-alert alert-danger">Immagine non valida o troppo grande: usa un file JPG, PNG o GIF fino a 10 MB. Il prodotto non è stato modificato.</div></c:if>
 
     
     <div class="table-card">
@@ -45,10 +46,10 @@
                     <tr>
                         <td class="cell-id">#${p.idTe}</td>
                         <td class="cell-product">
-                            <strong>${p.nomeTe}</strong>
+                            <strong><c:out value="${p.nomeTe}"/></strong>
                         </td>
                         <td>
-                            <span class="pill-category">${not empty p.nomeCategoria ? p.nomeCategoria : ('Cat #' += p.idCategoria)}</span>
+                            <span class="pill-category"><c:out value="${not empty p.nomeCategoria ? p.nomeCategoria : ('Cat #' += p.idCategoria)}"/></span>
                         </td>
                         <td class="cell-price">${p.priceCurrencyFormat}</td>
                         <td class="cell-iva">${p.iva}%</td>
@@ -67,9 +68,11 @@
                         </td>
                         <td class="cell-actions">
                             <a href="${pageContext.request.contextPath}/admin/prodotti?action=edit&id=${p.idTe}" class="btn-action btn-edit">Modifica</a>
-                            <a href="${pageContext.request.contextPath}/admin/prodotti?action=delete&id=${p.idTe}" 
-                               class="btn-action btn-delete"
-                               onclick="return confirm('Sei sicuro di voler cancellare definitivamente questo prodotto? L\'operazione non è reversibile.');">Elimina</a>
+                            <a href="${pageContext.request.contextPath}/admin/prodotti"
+                               data-post-url="${pageContext.request.contextPath}/admin/prodotti"
+                               data-fields="action=delete&amp;id=${p.idTe}"
+                               data-confirm="Sei sicuro di voler cancellare definitivamente questo prodotto? L'operazione non è reversibile."
+                               class="btn-action btn-delete">Elimina</a>
                         </td>
                     </tr>
                 </c:forEach>

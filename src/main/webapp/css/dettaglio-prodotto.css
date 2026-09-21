@@ -140,6 +140,7 @@
 
 .purchase-info .form-row {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 0.8rem;
 }
@@ -187,5 +188,37 @@
         grid-template-columns: 45% 55%;
         gap: 2rem;
         align-items: start;
+    }
+}
+
+/* Schermi stretti */
+@media (max-width: 600px) {
+    .card-wrapper {
+        margin: 1rem auto;
+        padding: 0;
+    }
+
+    .card {
+        padding: 1rem;
+    }
+
+    .img-showcase img {
+        max-height: 300px;
+    }
+
+    .product-content {
+        padding: 1rem 0.25rem;
+    }
+
+    .product-title {
+        font-size: 1.6rem;
+    }
+
+    .product-price {
+        font-size: 1.2rem;
+    }
+
+    .purchase-info .btn {
+        flex: 1 1 100%;
     }
 }

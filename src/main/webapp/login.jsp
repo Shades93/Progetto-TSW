@@ -20,22 +20,26 @@
         <c:if test="${not empty successMessage}">
             <div class="alert alert-success">${successMessage}</div>
         </c:if>
+        <c:if test="${param.error == 'unauthorized'}">
+            <div class="alert alert-danger">Devi accedere con un account amministratore per aprire quella pagina.</div>
+        </c:if>
         <c:if test="${param.logout == 'true'}">
             <div class="alert alert-success">Sessione terminata con successo. A presto!</div>
         </c:if>
 
-        <form action="${pageContext.request.contextPath}/login" method="post" class="form-standard">
+        <form action="${pageContext.request.contextPath}/login" method="post" class="form-standard" data-validate>
+            <input type="hidden" name="csrf" value="${sessionScope.csrfToken}">
             <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email"
-                       value="${not empty param.email ? param.email : email}"
-                       placeholder="esempio@dominio.it" required autofocus>
+                       value="<c:out value="${not empty param.email ? param.email : email}"/>"
+                       placeholder="esempio@dominio.it" maxlength="100" pattern="[^\s@]+@[^\s@]+\.[^\s@]+" required autofocus>
             </div>
 
             <div class="form-group">
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password"
-                       placeholder="Inserisci la password" required>
+                       placeholder="Inserisci la password" maxlength="30" required>
             </div>
 
             <button type="submit" class="btn-primary">Accedi</button>

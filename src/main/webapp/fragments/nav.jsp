@@ -34,10 +34,10 @@
 
                 <li class="user-greeting">
 				    <span class="user-pill">
-				        <span class="user-icon">🌿</span> Ciao, <strong>${sessionScope.user.nome}</strong>
+				        <span class="user-icon">🌿</span> Ciao, <strong><c:out value="${sessionScope.user.nome}"/></strong>
 				    </span>
 				</li>
-                <li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
+                <li><a href="${pageContext.request.contextPath}/catalogo" data-post-url="${pageContext.request.contextPath}/logout">Logout</a></li>
             </c:when>
 
             <c:otherwise>

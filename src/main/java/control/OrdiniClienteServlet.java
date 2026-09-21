@@ -60,11 +60,11 @@ public class OrdiniClienteServlet extends HttpServlet {
                 request.setAttribute("ordini", ordini);
                 request.getRequestDispatcher("/storicoOrdini.jsp").forward(request, response);
             }
+        } catch (NumberFormatException e) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, "Ordine non trovato.");
         } catch (Exception e) {
             e.printStackTrace();
-            response.setContentType("text/plain;charset=UTF-8");
-            response.getWriter().write("ERRORE: " + e.getClass().getName() + " - " + e.getMessage());
-            return;
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
     }
 }

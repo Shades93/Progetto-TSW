@@ -1,26 +1,15 @@
--- ==========================================================
--- DATI INIZIALI DI TEST (MOCK DATA)
--- ==========================================================
-
--- Categorie
 INSERT INTO categoria (nome_categoria, descrizione) VALUES
 ('Tè Verde', 'Tè non fermentati ricchi di antiossidanti'),
 ('Tè Nero', 'Tè completamente ossidati dal sapore deciso'),
 ('Matcha', 'Il matcha è ricco di vitamine, minerali, polifenoli ed è il tè con la maggior percentuale di antiossidanti!');
 
--- Utenti di prova
--- Password per entrambi: "Password123!"
--- Hash SHA-512 generato:
--- c8837b23ff8aaa8a2dde915473ce099131ff73f512f6da269a5386600241dd707475c742c3886f4a217aa7be29393a54d5d90956b629fd61dfb689a744cb89bb
+
 INSERT INTO utente (nome, cognome, email, password, telefono, is_admin) VALUES
-('Admin', 'Shop', 'admin@teatime.it', 'c8837b23ff8aaa8a2dde915473ce099131ff73f512f6da269a5386600241dd707475c742c3886f4a217aa7be29393a54d5d90956b629fd61dfb689a744cb89bb', '0891234567', TRUE),
-('Mario', 'Rossi', 'mario.rossi@email.it', 'c8837b23ff8aaa8a2dde915473ce099131ff73f512f6da269a5386600241dd707475c742c3886f4a217aa7be29393a54d5d90956b629fd61dfb689a744cb89bb', '3401234567', FALSE);
+('Admin', 'Admin', 'admin@admin.it', '3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2', '0823987457', TRUE);
 
--- Indirizzo
 INSERT INTO indirizzo (user_id, via, numero, citta, cap) VALUES
-(2, 'Via Giovanni Paolo II', '132', 'Fisciano', '84084');
+(1, 'Via Giovanni Paolo II', '132', 'Fisciano', '84084');
 
--- Prodotti
 INSERT INTO te (id_categoria, nome_te, descrizione, prezzo, iva, quantita_disponibile, peso, provenienza, immagine) VALUES
 (1, 'Sencha Giapponese', 'Pregiato tè verde coltivato a Shizuoka, note vegetali fresche.<br><br><strong>🍵 Preparazione:</strong> 75°C • 2-3 min • 2g in 200ml', 9.50, 22.00, 25, 100, 'Giappone', '1_1.jpg'),
 (3, 'Matcha Cerimoniale', 'Polvere finissima di tè verde d\'ombra di prima scelta.<br><br><strong>🥣 Preparazione:</strong> 80°C • Sbattere con frusta chasen fino a creare schiuma', 22.00, 22.00, 15, 30, 'Giappone', '2_1.jpg'),

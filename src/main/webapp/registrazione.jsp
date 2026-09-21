@@ -19,21 +19,22 @@
         </c:if>
 
         <form id="registrationForm" action="${pageContext.request.contextPath}/registrazione" method="post" class="form-standard">
+            <input type="hidden" name="csrf" value="${sessionScope.csrfToken}">
             <div class="form-group">
                 <label for="nome">Nome:</label>
-                <input type="text" id="nome" name="nome" value="${param.nome}" placeholder="Es. Mario" required>
+                <input type="text" id="nome" name="nome" value="<c:out value="${param.nome}"/>" placeholder="Es. Mario" required>
                 <span id="nomeError" class="error-inline"></span>
             </div>
 
             <div class="form-group">
                 <label for="cognome">Cognome:</label>
-                <input type="text" id="cognome" name="cognome" value="${param.cognome}" placeholder="Es. Rossi" required>
+                <input type="text" id="cognome" name="cognome" value="<c:out value="${param.cognome}"/>" placeholder="Es. Rossi" required>
                 <span id="cognomeError" class="error-inline"></span>
             </div>
 
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" value="${param.email}" placeholder="esempio@dominio.it" required>
+                <input type="email" id="email" name="email" value="<c:out value="${param.email}"/>" placeholder="esempio@dominio.it" required>
                 <span id="emailError" class="error-inline"></span>
             </div>
 
@@ -50,11 +51,6 @@
 			    <span id="confirmPasswordError" class="error-inline"></span>
 			</div>
 
-            <div class="form-group">
-                <label for="indirizzo">Indirizzo Spedizione:</label>
-                <input type="text" id="indirizzo" name="indirizzo" value="${param.indirizzo}" placeholder="Via, Città, CAP" required>
-            </div>
-            
             <div class="form-group">
 			    <label for="numeroTelefono">Numero di Telefono:</label>
 			    <div style="display: flex; gap: 8px;">

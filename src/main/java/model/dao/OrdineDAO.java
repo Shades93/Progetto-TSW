@@ -13,12 +13,13 @@ public class OrdineDAO {
     }
 
     // Requisito Checklist: Salvataggio transazionale dell'ordine e delle righe storiche
-    public synchronized void doSaveOrder(OrdineBean ordine) throws SQLException {
+    public void doSaveOrder(OrdineBean ordine) throws SQLException {
         String sqlOrdine = "INSERT INTO ordine (user_id, totale, totale_iva, stato, indirizzo_spedizione, metodo_pagamento) "
                          + "VALUES (?, ?, ?, ?, ?, ?)";
         String sqlDettaglio = "INSERT INTO dettaglio_ordine (id_ordine, id_te, quantita, prezzo_storico, iva_storica) "
                             + "VALUES (?, ?, ?, ?, ?)";
-        String sqlGiacenza = "UPDATE te SET quantita_disponibile = quantita_disponibile - ? WHERE id_te = ?";
+        String sqlGiacenza = "UPDATE te SET quantita_disponibile = quantita_disponibile - ? "
+                           + "WHERE id_te = ? AND quantita_disponibile >= ?";
 
         Connection con = null;
         try {
@@ -55,10 +56,14 @@ public class OrdineDAO {
                     psDet.setDouble(5, item.getIvaStorica());
                     psDet.executeUpdate();
 
-                    // Scalo disponibilità magazzino
+                    // Scalo disponibilità magazzino: l'UPDATE è condizionato, quindi è atomico.
+                    // Se la giacenza non basta più non modifica nessuna riga e l'ordine viene annullato.
                     psGiac.setInt(1, item.getQuantita());
                     psGiac.setInt(2, item.getIdTe());
-                    psGiac.executeUpdate();
+                    psGiac.setInt(3, item.getQuantita());
+                    if (psGiac.executeUpdate() != 1) {
+                        throw new SQLException("Giacenza insufficiente per il prodotto " + item.getIdTe());
+                    }
                 }
             }
 

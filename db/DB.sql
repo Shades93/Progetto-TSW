@@ -76,17 +76,3 @@ CREATE TABLE dettaglio_ordine (
     FOREIGN KEY (id_te) REFERENCES te(id_te)
         ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB;
-
-
-CREATE TABLE recensione (
-    id_recensione INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
-    id_te INT NOT NULL,
-    voto TINYINT NOT NULL CHECK (voto BETWEEN 1 AND 5),
-    commento TEXT,
-    data DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES utente(user_id)
-        ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (id_te) REFERENCES te(id_te)
-        ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB;

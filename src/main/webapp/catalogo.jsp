@@ -23,18 +23,17 @@
         <c:forEach var="p" items="${prodotti}">
             <div class="product-card">
             	<a href="${pageContext.request.contextPath}/prodotto?id=${p.id}" style="display: block; text-decoration: none;">
-                	<img src="${pageContext.request.contextPath}/immagini/${not empty p.immagine ? p.immagine : 'default.jpg'}" alt="${p.nome}" class="product-thumb">
+                	<img src="${pageContext.request.contextPath}/immagini/<c:out value="${not empty p.immagine ? p.immagine : 'default.jpg'}"/>" alt="<c:out value="${p.nome}"/>" class="product-thumb">
                 </a>
-                <h3>${p.nome}</h3>
-                <p class="product-category">${p.nomeCategoria}</p>
+                <h3><c:out value="${p.nome}"/></h3>
+                <p class="product-category"><c:out value="${p.nomeCategoria}"/></p>
                 <p class="product-price">${p.prezzo}</p>
                 
                 <div class="card-actions">
                     <a href="${pageContext.request.contextPath}/prodotto?id=${p.id}" class="btn-secondary">Dettagli</a>
                     <c:choose>
                         <c:when test="${p.quantitaDisponibile > 0}">
-						    <a href="javascript:void(0)" 
-						       data-url="${pageContext.request.contextPath}/carrello?action=add&id=${p.id}&quantita=1" 
+						    <a href="javascript:void(0)" data-id="${p.id}"
 						       class="btn-primary btn-add-cart">Aggiungi</a>
 						</c:when>
                         <c:otherwise>
@@ -51,9 +50,13 @@
 document.querySelectorAll('.btn-add-cart').forEach(button => {
     button.addEventListener('click', function(e) {
         e.preventDefault();
-        const url = this.getAttribute('data-url');
+        const csrf = document.querySelector('meta[name="csrf-token"]').content;
 
-        fetch(url, { method: 'GET' })
+        fetch('${pageContext.request.contextPath}/carrello', {
+            method: 'POST',
+            headers: { 'X-CSRF-Token': csrf, 'X-Requested-With': 'fetch' },
+            body: new URLSearchParams({ action: 'add', id: this.dataset.id, quantita: '1' })
+        })
             .then(response => {
                 if (!response.ok) {
                     throw new Error("Errore server: " + response.status);
@@ -62,17 +65,21 @@ document.querySelectorAll('.btn-add-cart').forEach(button => {
             })
             .then(count => {
                 let badge = document.querySelector('.cart-badge');
-                
+
                 // Se non c'era nessun articolo e il badge non esisteva a video, lo crea al volo
                 if (!badge) {
                     badge = document.createElement('span');
                     badge.className = 'cart-badge';
                     document.querySelector('.top-cart-btn').appendChild(badge);
                 }
-                
+
                 badge.textContent = count.trim();
+                showToast('Prodotto aggiunto al carrello');
             })
-            .catch(err => console.error("Errore fetch carrello:", err));
+            .catch(err => {
+                console.error("Errore fetch carrello:", err);
+                showToast('Impossibile aggiungere il prodotto. Riprova.', 'error');
+            });
     });
 });
 </script>

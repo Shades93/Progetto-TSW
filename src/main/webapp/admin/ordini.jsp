@@ -26,17 +26,17 @@
         <form action="${pageContext.request.contextPath}/admin/ordini" method="get" class="admin-filter-form">
             <div class="filter-field">
                 <label for="dataInizio">Da Data</label>
-                <input type="date" id="dataInizio" name="dataInizio" value="${param.dataInizio}">
+                <input type="date" id="dataInizio" name="dataInizio" value="<c:out value="${param.dataInizio}"/>">
             </div>
             
             <div class="filter-field">
                 <label for="dataFine">A Data</label>
-                <input type="date" id="dataFine" name="dataFine" value="${param.dataFine}">
+                <input type="date" id="dataFine" name="dataFine" value="<c:out value="${param.dataFine}"/>">
             </div>
             
             <div class="filter-field">
                 <label for="clienteId">ID Cliente</label>
-                <input type="number" id="clienteId" name="clienteId" placeholder="Es. 3" min="1" value="${param.clienteId}">
+                <input type="number" id="clienteId" name="clienteId" placeholder="Es. 3" min="1" value="<c:out value="${param.clienteId}"/>">
             </div>
 
             <div class="filter-actions">
@@ -80,8 +80,8 @@
                                 </td>
                                 <td>
                                     <!-- Badge dinamico in base allo stato -->
-                                    <span class="status-pill status-${ord.stato.toLowerCase()}">
-                                        ${ord.stato}
+                                    <span class="status-pill status-<c:out value="${ord.stato.toLowerCase()}"/>">
+                                        <c:out value="${ord.stato}"/>
                                     </span>
                                 </td>
                                 <td class="cell-actions">

@@ -34,7 +34,7 @@
 </error-page>
 <error-page>
     <error-code>403</error-code>
-    <location>/401.jsp</location>
+    <location>/403.jsp</location>
 </error-page>
 
 </web-app>

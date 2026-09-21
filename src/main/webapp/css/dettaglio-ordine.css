@@ -209,3 +209,202 @@
         padding: 0 !important;
     }
 }
+
+/* =========================================
+   PAGINA CONFERMA ORDINE
+   ========================================= */
+
+.text-center {
+    text-align: center;
+}
+
+.confirmation-box {
+    max-width: 560px;
+    margin: 3.5rem auto;
+    background: #ffffff;
+    border-radius: 1.5rem;
+    border: 1px solid rgba(74, 110, 36, 0.15);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    padding: 3rem 2.5rem;
+    animation: confirm-card-in 0.5s ease both;
+}
+
+@keyframes confirm-card-in {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.confirm-icon {
+    width: 84px;
+    height: 84px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    background: #e8f5e9;
+    color: #2e7d32;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.4rem;
+    font-weight: 700;
+    animation: confirm-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s both;
+}
+
+@keyframes confirm-pop {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.confirmation-box .text-success {
+    font-family: 'Noto Serif', serif;
+    font-size: 2rem;
+    color: #2b4213;
+    margin: 0 0 1rem 0;
+}
+
+.confirmation-box p {
+    color: #555;
+    line-height: 1.6;
+    margin: 0.5rem 0;
+}
+
+.order-number {
+    font-family: 'Noto Serif', serif;
+    font-size: 2.6rem;
+    color: #4a6e24;
+    margin: 1rem 0;
+    letter-spacing: 1px;
+}
+
+.confirmation-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.confirmation-actions .btn-primary {
+    background-color: #4a6e24;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 0.7rem 1.6rem;
+    border-radius: 50px;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(74, 110, 36, 0.25);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.confirmation-actions .btn-primary:hover {
+    background-color: #2b4213;
+    transform: translateY(-2px);
+}
+
+.confirmation-actions .btn-secondary {
+    background-color: #ffffff;
+    color: #4a6e24;
+    border: 1.5px solid #4a6e24;
+    text-decoration: none;
+    padding: 0.7rem 1.6rem;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.confirmation-actions .btn-secondary:hover {
+    background-color: #4a6e24;
+    color: #ffffff;
+}
+
+.confirmation-box .alert {
+    border-radius: 1rem;
+    padding: 1.2rem 1.5rem;
+    font-size: 1rem;
+}
+
+.confirmation-box .alert-warning {
+    background: #fff8e1;
+    color: #8a6d1f;
+    border: 1px solid rgba(183, 129, 3, 0.25);
+}
+
+.confirmation-box .alert-warning .btn-primary {
+    display: inline-block;
+    background-color: #4a6e24;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 0.6rem 1.4rem;
+    border-radius: 50px;
+    font-weight: 600;
+    margin-top: 0.5rem;
+}
+
+@media screen and (max-width: 600px) {
+    .invoice-wrapper {
+        margin: 1rem auto;
+        padding: 0 0.75rem;
+    }
+
+    .invoice-actions {
+        flex-wrap: wrap;
+    }
+
+    .invoice-box {
+        padding: 22px 16px;
+    }
+
+    .invoice-header,
+    .invoice-intro,
+    .invoice-footer-blocks {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .invoice-meta,
+    .invoice-intro > div:last-child {
+        text-align: left !important;
+    }
+
+    .invoice-table th,
+    .invoice-table td {
+        padding: 10px 6px;
+        font-size: 0.85rem;
+    }
+
+    .invoice-table th:nth-child(2),
+    .invoice-table td:nth-child(2) {
+        display: none;
+    }
+
+    .summary-table {
+        width: 100%;
+    }
+
+    .confirmation-box {
+        margin: 1.5rem auto;
+        padding: 2rem 1.2rem;
+    }
+
+    .confirmation-box .text-success {
+        font-size: 1.6rem;
+    }
+
+    .order-number {
+        font-size: 2rem;
+    }
+
+    .confirmation-actions {
+        flex-direction: column;
+    }
+}

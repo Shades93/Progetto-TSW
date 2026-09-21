@@ -45,7 +45,7 @@ public class RicercaAJAXServlet extends HttpServlet {
                 TeBean p = matches.get(i);
                 json.append("{")
                     .append("\"id\":").append(p.getIdTe()).append(",")
-                    .append("\"nome\":\"").append(p.getNomeTe().replace("\"", "\\\"")).append("\",")
+                    .append("\"nome\":\"").append(escapeJson(p.getNomeTe())).append("\",")
                     .append("\"prezzo\":").append(p.getPrezzo())
                     .append("}");
                 if (i < matches.size() - 1) {
@@ -59,5 +59,25 @@ public class RicercaAJAXServlet extends HttpServlet {
             out.print("[]");
         }
         out.flush();
+    }
+
+    private static String escapeJson(String testo) {
+        StringBuilder sb = new StringBuilder();
+        for (char c : testo.toCharArray()) {
+            switch (c) {
+                case '"':  sb.append("\\\""); break;
+                case '\\': sb.append("\\\\"); break;
+                case '\n': sb.append("\\n"); break;
+                case '\r': sb.append("\\r"); break;
+                case '\t': sb.append("\\t"); break;
+                default:
+                    if (c < 0x20) {
+                        sb.append(String.format("\\u%04x", (int) c));
+                    } else {
+                        sb.append(c);
+                    }
+            }
+        }
+        return sb.toString();
     }
 }

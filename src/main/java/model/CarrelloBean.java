@@ -27,6 +27,15 @@ public class CarrelloBean implements Serializable {
         items.add(new ItemCarrelloBean(prodotto, quantita));
     }
 
+    public int getQuantita(int idTe) {
+        for (ItemCarrelloBean item : items) {
+            if (item.getProdotto().getIdTe() == idTe) {
+                return item.getQuantita();
+            }
+        }
+        return 0;
+    }
+
     public void updateQuantity(int idTe, int quantita) {
         if (quantita <= 0) {
             removeProduct(idTe);

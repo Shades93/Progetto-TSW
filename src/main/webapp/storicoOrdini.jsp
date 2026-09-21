@@ -45,14 +45,14 @@
                     <tbody>
                         <c:forEach var="ord" items="${ordini}">
                             <tr>
-                                <td class="order-id">#${ord.id}</td>
-                                <td class="order-date">
+                                <td class="order-id" data-label="Ordine">#${ord.id}</td>
+                                <td class="order-date" data-label="Data">
                                     <fmt:formatDate value="${ord.dataOrdine}" pattern="dd/MM/yyyy HH:mm"/>
                                 </td>
-                                <td class="order-total">
+                                <td class="order-total" data-label="Totale">
                                     € <fmt:formatNumber value="${ord.totale}" minFractionDigits="2" maxFractionDigits="2"/>
                                 </td>
-                                <td>
+                                <td data-label="Stato">
                                     <c:set var="statusClass" value="status-in-attesa" />
                                     <c:if test="${ord.stato == 'Completato' || ord.stato == 'Consegnato'}">
                                         <c:set var="statusClass" value="status-completato" />
@@ -65,10 +65,10 @@
                                     </c:if>
 
                                     <span class="order-status-pill ${statusClass}">
-                                        ${ord.stato}
+                                        <c:out value="${ord.stato}"/>
                                     </span>
                                 </td>
-                                <td style="text-align: right;">
+                                <td class="order-doc" data-label="Documento">
                                     <a href="${pageContext.request.contextPath}/ordini?id=${ord.id}" class="btn-invoice">
                                         <span>Fattura</span> 🧾
                                     </a>

@@ -48,6 +48,7 @@ public class LoginServlet extends HttpServlet {
 
             if (user != null) {
                 HttpSession session = request.getSession(true);
+                request.changeSessionId(); // nuovo identificatore dopo il login: difende dalla session fixation
                 session.setAttribute("user", user);
                 session.setMaxInactiveInterval(30 * 60);
 

@@ -17,7 +17,7 @@
 
         <c:if test="${not empty errorMessage}">
             <div class="alert-error">
-                ${errorMessage}
+                <c:out value="${errorMessage}"/>
             </div>
         </c:if>
 
@@ -44,25 +44,28 @@
                     <tbody>
                         <c:forEach items="${carrello.items}" var="item">
                             <tr>
-                                <td>
-                                    <strong>${item.prodotto.nomeTe}</strong>
+                                <td class="cell-name">
+                                    <strong><c:out value="${item.prodotto.nomeTe}"/></strong>
                                 </td>
-                                <td>
+                                <td data-label="Prezzo unitario">
                                     <fmt:formatNumber value="${item.prodotto.prezzo}" type="currency" currencySymbol="€"/>
                                 </td>
-                                <td class="col-center">
-                                    <form action="${pageContext.request.contextPath}/carrello" method="get" class="form-update-qty">
+                                <td class="col-center" data-label="Quantità">
+                                    <form action="${pageContext.request.contextPath}/carrello" method="post" class="form-update-qty" data-validate>
+                                        <input type="hidden" name="csrf" value="${sessionScope.csrfToken}">
                                         <input type="hidden" name="action" value="update">
                                         <input type="hidden" name="id" value="${item.prodotto.idTe}">
                                         <input type="number" name="quantita" value="${item.quantita}" min="1" max="${item.prodotto.quantitaDisponibile}" class="input-qty">
                                         <button type="submit" title="Aggiorna quantità" class="btn-update">↺</button>
                                     </form>
                                 </td>
-                                <td class="col-right">
+                                <td class="col-right" data-label="Subtotale">
                                     <fmt:formatNumber value="${item.prodotto.prezzo * item.quantita}" type="currency" currencySymbol="€"/>
                                 </td>
-                                <td class="col-center">
-                                    <a href="${pageContext.request.contextPath}/carrello?action=remove&id=${item.prodotto.idTe}" 
+                                <td class="col-center" data-label="Rimuovi">
+                                    <a href="${pageContext.request.contextPath}/carrello"
+                                       data-post-url="${pageContext.request.contextPath}/carrello"
+                                       data-fields="action=remove&amp;id=${item.prodotto.idTe}"
                                        class="btn-remove" title="Rimuovi prodotto">&times;</a>
                                 </td>
                             </tr>
@@ -71,9 +74,11 @@
                 </table>
 
                 <div class="cart-footer">
-                    <a href="${pageContext.request.contextPath}/carrello?action=clear" 
-                       class="btn-clear"
-                       onclick="return confirm('Sei sicuro di voler svuotare il carrello?');">
+                    <a href="${pageContext.request.contextPath}/carrello"
+                       data-post-url="${pageContext.request.contextPath}/carrello"
+                       data-fields="action=clear"
+                       data-confirm="Sei sicuro di voler svuotare il carrello?"
+                       class="btn-clear">
                        Svuota carrello
                     </a>
 
@@ -82,10 +87,14 @@
                             Totale: <strong class="total-price"><fmt:formatNumber value="${carrello.totale}" type="currency" currencySymbol="€"/></strong>
                         </p>
                         
-                        <form action="${pageContext.request.contextPath}/checkout" method="post" style="margin-top: 15px; display: flex; flex-direction: column; gap: 10px;">
+                        <form action="${pageContext.request.contextPath}/checkout" method="post" class="form-checkout" data-validate>
+						    <input type="hidden" name="csrf" value="${sessionScope.csrfToken}">
 						    <div>
 						        <label for="indirizzo" style="display: block; font-weight: bold; margin-bottom: 4px;">Indirizzo di Spedizione:</label>
-						        <input type="text" id="indirizzo" name="indirizzo" required placeholder="Via, Civico, Città, CAP" style="width: 100%; padding: 8px; box-sizing: border-box;">
+						        <input type="text" id="indirizzo" name="indirizzo" required maxlength="255"
+							               pattern="(?=.*[A-Za-zÀ-ÿ])(?=.*[0-9]).{5,255}"
+							               data-msg="Inserisci un indirizzo completo (via, civico, città, CAP)."
+							               placeholder="Via, Civico, Città, CAP" style="width: 100%; padding: 8px; box-sizing: border-box;">
 						    </div>
 						    
 						    <div>

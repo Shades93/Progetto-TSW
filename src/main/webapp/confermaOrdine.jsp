@@ -12,6 +12,7 @@
 
 <main class="container text-center">
     <div class="confirmation-box">
+        <div class="confirm-icon">✓</div>
         <h2 class="text-success">Ordine Confermato!</h2>
 
         <c:choose>

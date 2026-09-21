@@ -10,7 +10,7 @@
 /* Griglia responsiva */
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
     gap: 2rem;
 }
 
@@ -39,6 +39,7 @@
     border-radius: 0.85rem;
     background-color: #f7f5ed;
     margin-bottom: 1rem;
+    box-shadow: inset 0 0 26px 6px rgba(0, 0, 0, 0.5);
 }
 
 /* Titolo tè */
@@ -197,6 +198,10 @@
     vertical-align: middle;
 }
 
+.orders-table td.order-doc {
+    text-align: right;
+}
+
 .orders-table tbody tr:last-child td {
     border-bottom: none;
 }
@@ -328,4 +333,68 @@
     background-color: #38551a;
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(74, 110, 36, 0.3);
+}
+
+/* Schermi stretti */
+@media (max-width: 600px) {
+    .container h2 {
+        font-size: 1.7rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .product-grid {
+        gap: 1.2rem;
+    }
+
+    .product-thumb {
+        height: 160px;
+    }
+
+    .orders-title {
+        font-size: 1.9rem;
+    }
+
+    .orders-table,
+    .orders-table tbody,
+    .orders-table tr,
+    .orders-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .orders-table thead {
+        position: absolute;
+        left: -9999px;
+    }
+
+    .orders-table tbody tr {
+        padding: 0.5rem 0;
+        border-bottom: 1.5px solid #d4decb;
+    }
+
+    .orders-table tbody tr:last-child {
+        border-bottom: none;
+    }
+
+    .orders-table td,
+    .orders-table td.order-doc {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.4rem 1rem;
+        border-bottom: none;
+        text-align: right;
+    }
+
+    .orders-table td[data-label]::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #556b43;
+        text-align: left;
+    }
+
+    .orders-empty-card {
+        padding: 2.5rem 1.2rem;
+    }
 }

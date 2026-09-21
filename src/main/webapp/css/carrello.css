@@ -70,7 +70,9 @@
 
 .form-update-qty {
     display: inline-flex;
+    flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
     gap: 0.4rem;
 }
 
@@ -159,4 +161,88 @@
     padding: 0.75rem;
     border-radius: 5px;
     margin-bottom: 1rem;
+}
+
+.form-checkout {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-checkout .field-error {
+    text-align: left;
+}
+
+@media (max-width: 700px) {
+    .cart-container {
+        margin: 1rem 0;
+        padding: 1rem;
+    }
+
+    .cart-title {
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+    }
+
+    .cart-table,
+    .cart-table tbody,
+    .cart-table tr,
+    .cart-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .cart-table thead {
+        position: absolute;
+        left: -9999px;
+    }
+
+    .cart-table tbody tr {
+        border: 1px solid #e3e8dc;
+        border-radius: 10px;
+        padding: 0.4rem 0;
+        margin-bottom: 1rem;
+    }
+
+    .cart-table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.45rem 0.9rem;
+        text-align: right;
+    }
+
+    .cart-table td[data-label]::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #666;
+        text-align: left;
+    }
+
+    .cart-table td.cell-name {
+        justify-content: flex-start;
+        font-size: 1.1rem;
+        padding-bottom: 0.6rem;
+        border-bottom: 1px solid #eee;
+    }
+
+    .cart-footer {
+        flex-direction: column-reverse;
+        align-items: stretch;
+        gap: 1.2rem;
+    }
+
+    .btn-clear {
+        text-align: center;
+    }
+
+    .cart-summary {
+        text-align: left;
+    }
+
+    .btn-checkout {
+        width: 100%;
+    }
 }
