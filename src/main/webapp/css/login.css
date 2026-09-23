@@ -1,168 +1,11 @@
 @charset "UTF-8";
 
 /* css per login */
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 3rem 1.5rem;
-}
-
-.auth-card {
-    background: #ffffff;
-    width: 100%;
-    max-width: 520px;
-    padding: 2.5rem 3rem;
-    border-radius: 1.5rem;
-    border: 1px solid rgba(74, 110, 36, 0.15);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-    box-sizing: border-box;
-}
-
-.auth-card h2 {
-    font-family: 'Noto Serif', Georgia, serif;
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: #1b2e0e;
-    margin: 0 0 1.5rem 0;
-    text-align: center;
-}
-
-
-.alert {
-    padding: 0.85rem 1.2rem;
-    border-radius: 8px;
-    font-size: 0.95rem;
-    margin-bottom: 1.4rem;
-    text-align: center;
-}
-
-.alert-danger {
-    background-color: #fdeee9;
-    color: #a82e1d;
-    border: 1px solid rgba(168, 46, 29, 0.25);
-}
-
-.alert-success {
-    background-color: #eaf2e3;
-    color: #2b4213;
-    border: 1px solid rgba(74, 110, 36, 0.25);
-}
-
-
-.form-standard {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.45rem;
-}
-
-.form-group label {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: #2b4213;
-}
-
-.form-group input,
-.form-group select {
-    width: 100%;
-    padding: 0.7rem 0.95rem;
-    border-radius: 8px;
-    border: 1px solid #d4decb;
-    background-color: #fafcf7;
-    font-family: inherit;
-    font-size: 0.95rem;
-    color: #17260a;
-    outline: none;
-    box-sizing: border-box;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-}
-
-.form-group input:focus,
-.form-group select:focus {
-    border-color: #4a6e24;
-    background-color: #ffffff;
-    box-shadow: 0 0 0 3px rgba(74, 110, 36, 0.12);
-}
-
-
-.form-group div select {
-    border-radius: 8px;
-}
-
-.form-group div input {
-    border-radius: 8px;
-}
-
-
-.error-inline {
-    display: block;
-    font-size: 0.85rem;
-    font-weight: 500;
-    min-height: 1.1rem;
-    margin-top: 0.2rem;
-}
-
-
-.btn-primary {
-    cursor: pointer;
-    background-color: #4a6e24;
-    color: #ffffff;
-    border: 1px solid #4a6e24;
-    padding: 0.85rem;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 1.05rem;
-    margin-top: 0.6rem;
-    transition: background-color 0.2s ease, transform 0.1s ease;
-    width: 100%;
-}
-
-.btn-primary:hover {
-    background-color: #2b4213;
-    border-color: #2b4213;
-}
-
-.btn-primary:active {
-    transform: translateY(1px);
-}
-
-.form-footer-note {
-    font-size: 0.95rem;
-    color: #555;
-    text-align: center;
-    margin-top: 0.8rem;
-    margin-bottom: 0;
-}
-
-.form-footer-note a {
-    color: #4a6e24;
-    font-weight: 600;
-    text-decoration: none;
-    transition: color 0.2s ease;
-}
-
-.form-footer-note a:hover {
-    color: #2b4213;
-    text-decoration: underline;
-}
-
-@media (max-width: 600px) {
-    .auth-card {
-        padding: 2rem 1.5rem;
-    }
-}
-
 main.container {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    padding: 3rem 1.5rem;
+    padding: 1.5rem 1.5rem;
 }
 
 .auth-card {
@@ -243,6 +86,14 @@ main.container {
     border-color: #4a6e24;
     background-color: #ffffff;
     box-shadow: 0 0 0 3px rgba(74, 110, 36, 0.12);
+}
+
+.form-group div select {
+    border-radius: 8px;
+}
+
+.form-group div input {
+    border-radius: 8px;
 }
 
 .error-inline {

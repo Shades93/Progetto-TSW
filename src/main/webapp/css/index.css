@@ -1,0 +1,244 @@
+/* Home page (index.jsp) */
+
+.home-page {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+/* Hero */
+.hero {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    padding-top: 1rem;
+}
+
+.hero-text {
+    flex: 1 1 420px;
+}
+
+.hero-eyebrow {
+    margin: 0 0 0.6rem 0;
+    font-family: "Noto Serif", serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--nav-bg);
+    letter-spacing: 0.02em;
+}
+
+.hero-title {
+    margin: 0 0 1.1rem 0;
+    font-family: "Noto Serif", serif;
+    font-size: clamp(2.1rem, 4.5vw, 3.1rem);
+    line-height: 1.15;
+    color: #1b2e0e;
+}
+
+.hero-sub {
+    margin: 0 0 1.9rem 0;
+    max-width: 480px;
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: #4d5a40;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.btn-hero-primary,
+.btn-hero-secondary {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.85rem 1.8rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-hero-primary {
+    background-color: var(--nav-bg);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(74, 110, 36, 0.25);
+}
+
+.btn-hero-primary:hover {
+    background-color: #2b4213;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(74, 110, 36, 0.32);
+}
+
+.btn-hero-secondary {
+    background-color: transparent;
+    color: var(--nav-bg);
+    border: 1.5px solid var(--nav-bg);
+}
+
+.btn-hero-secondary:hover {
+    background-color: var(--nav-bg);
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.hero-image {
+    flex: 1 1 360px;
+}
+
+.hero-image img {
+    display: block;
+    width: 100%;
+    height: 360px;
+    object-fit: cover;
+    border-radius: 1.5rem;
+    box-shadow: 0 12px 30px rgba(43, 66, 19, 0.18);
+}
+
+/* Titoli di sezione */
+.section-title {
+    margin: 0 0 1.5rem 0;
+    font-family: "Noto Serif", serif;
+    font-size: 1.9rem;
+    color: #2b4213;
+    text-align: center;
+}
+
+.section-title-light {
+    color: #ffffff;
+}
+
+/* Categorie */
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+}
+
+.category-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 1.9rem 1.5rem;
+    background-color: #ffffff;
+    border: 1px solid rgba(74, 110, 36, 0.15);
+    border-radius: 1.25rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 22px rgba(43, 66, 19, 0.12);
+}
+
+.category-icon {
+    font-size: 2.2rem;
+}
+
+.category-card h3 {
+    margin: 0.2rem 0 0 0;
+    font-family: "Noto Serif", serif;
+    font-size: 1.25rem;
+    color: #2b4213;
+}
+
+.category-card p {
+    margin: 0;
+    font-size: 0.92rem;
+    color: #666666;
+}
+
+/* Punti di forza */
+.home-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.9rem;
+    padding: 2.25rem;
+    background-color: #ffffff;
+    border: 1px solid rgba(74, 110, 36, 0.12);
+    border-radius: 1.25rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03);
+}
+
+.feature h3 {
+    margin: 0 0 0.5rem 0;
+    font-family: "Noto Serif", serif;
+    font-size: 1.1rem;
+    color: #2b4213;
+}
+
+.feature p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: #555555;
+}
+
+/* Invito finale */
+.home-cta {
+    position: relative;
+    text-align: center;
+    padding: 3rem 1.5rem;
+    background-color: var(--nav-bg);
+    background-image: url('../immagini/pattern.jpg');
+    background-repeat: repeat;
+    border: 1px solid rgba(30, 48, 14, 0.45);
+    border-radius: 1.25rem;
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.25),
+        inset 0 0 18px rgba(0, 0, 0, 0.4);
+}
+
+.btn-cta-light {
+    background-color: #ffffff;
+    color: var(--nav-bg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-cta-light:hover {
+    background-color: #fdfae9;
+    color: #2b4213;
+}
+
+/* Schermi stretti */
+@media (max-width: 860px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-sub {
+        max-width: none;
+    }
+
+    .hero-actions {
+        justify-content: center;
+    }
+
+    .hero-image img {
+        height: 260px;
+    }
+}
+
+@media (max-width: 600px) {
+    .home-page {
+        gap: 2.25rem;
+    }
+
+    .hero-title {
+        font-size: 1.9rem;
+    }
+
+    .home-features {
+        padding: 1.5rem;
+    }
+}
